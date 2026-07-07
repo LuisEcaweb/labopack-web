@@ -55,13 +55,7 @@ a:hover { text-decoration: underline; }
   color: var(--text);
 }
 .brand:hover { text-decoration: none; }
-.brand .logo-mark {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 32px; height: 32px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--accent-strong), #6366f1);
-  color: #fff; font-weight: 800; font-size: 1rem;
-}
-.brand .tld { color: var(--accent); }
+.brand .brand-logo { height: 34px; width: auto; display: block; }
 
 .nav-toggle { display: none; }
 .nav-toggle-label {
