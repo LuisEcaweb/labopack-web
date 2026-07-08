@@ -151,7 +151,7 @@
           <div class="card feature">
             <span class="icon">🧊</span>
             <h3>Lotes, caducidades y frío</h3>
-            <p>Trazabilidad completa por lote y fecha de caducidad, y marcado de producto que requiere cadena de frío. Lo que exige farma bajo GDP/BPD — y agradecen alimentación, cosmética o química.</p>
+            <p>Trazabilidad completa por lote y fecha de caducidad, y marcado de producto que requiere cadena de frío. Lectura del <strong>DataMatrix GS1</strong> del medicamento (código, lote, caducidad y número de serie); verificación contra el nodo <strong>SEVeM bajo demanda</strong>. Lo que exige farma bajo GDP/BPD — y agradecen alimentación, cosmética o química.</p>
           </div>
           <div class="card feature">
             <span class="icon">📊</span>
@@ -231,6 +231,7 @@
             <span class="icon">🔄</span>
             <h3>EDI de salida validado</h3>
             <p>Exportación de EDI 856 (DESADV), 945 (Shipping Advice) y 947 (ajuste de inventario), validada contra la especificación del cliente antes de enviarla.</p>
+            <a class="more" href="/guias/edi-para-operadores-logisticos/">Guía: EDI 940/945/856/947 explicado →</a>
           </div>
         </div>
       </div>
@@ -293,7 +294,7 @@
           <tr><td>Sincronización</td><td>Bidireccional y automática entre puesto de gestión, servidor y dispositivos móviles</td></tr>
           <tr><td>EDI</td><td>940 (pedido), 856/DESADV (Ship Notice), 945 (Shipping Advice), 947 (ajuste de inventario), con validadores contra spec de cliente e importación por SFTP</td></tr>
           <tr><td>Fabricación</td><td>Órdenes de fabricación y co-packing con plantillas BOM (kitting), consumo de componentes y estados controlados</td></tr>
-          <tr><td>Trazabilidad</td><td>Lote, caducidad, ubicación, cadena de frío, stock reservado/disponible y auditoría de ajustes (usuario y fecha)</td></tr>
+          <tr><td>Trazabilidad</td><td>Lote, caducidad, ubicación, cadena de frío, lectura del DataMatrix GS1 del medicamento (verificación SEVeM bajo demanda), stock reservado/disponible y auditoría de ajustes (usuario y fecha)</td></tr>
           <tr><td>Documentos</td><td>Albarán valorado en PDF, etiquetas GS1 de caja y palet con SSCC (Code128), talón de porte en PDF</td></tr>
           <tr><td>Expedición y transporte</td><td>Expediciones con asignación de transportista, firma de recogida, control de estado (preparada / en ruta / entregada) y zona de tránsito</td></tr>
           <tr><td>Modo offline</td><td>Operativa completa sin conexión; sincronización automática al recuperar cobertura</td></tr>
@@ -306,70 +307,90 @@
 
   <section id="comparativa" class="alt">
     <div class="container">
-      <h2 class="section-title">Qué lo diferencia de un WMS genérico</h2>
-      <p class="section-sub">Muchos WMS del mercado cubren el picking y poco más; el resto son módulos de pago o integraciones a medida. LabopackWMS trae de serie lo que un operador 3PL necesita de verdad.</p>
+      <h2 class="section-title">Cómo encaja frente a las alternativas</h2>
+      <p class="section-sub">No hay un WMS bueno para todo: cada familia de producto es fuerte en algo y floja en otra cosa. Donde LabopackWMS marca la diferencia es en tres frentes concretos — <strong>EDI de 3PL de verdad</strong>, <strong>funcionar sin conexión</strong> y <strong>farma con cadena de frío</strong> — sin el coste ni la implantación de una suite grande.</p>
       <div class="table-wrap">
         <table class="spec-table compare-table">
           <colgroup>
-            <col><col><col class="col-us">
+            <col><col><col><col><col class="col-us">
           </colgroup>
           <thead>
             <tr>
               <th>Capacidad</th>
-              <th>WMS genérico del mercado</th>
+              <th>Suite tier-1</th>
+              <th>WMS cloud ecommerce</th>
+              <th>ERP con módulo de almacén</th>
               <th class="us">LabopackWMS</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Lotes, caducidad y cadena de frío (GDP/BPD farma)</td>
-              <td class="mid">Módulo de pago o limitado</td>
+              <td>EDI de 3PL nativo (940 / 856 / 945 / 947 + DESADV)</td>
+              <td>Sí, en gama alta</td>
+              <td class="mid">Genérico o a medida</td>
+              <td class="mid">A medida</td>
+              <td class="yes">Nativo — X12 y EDIFACT, validado</td>
+            </tr>
+            <tr>
+              <td>Funciona sin conexión en la nave (offline-first)</td>
+              <td class="mid">Parcial</td>
+              <td class="mid">No — SaaS puro</td>
+              <td class="mid">Limitado</td>
+              <td class="yes">Sí, nativo (.NET MAUI Android)</td>
+            </tr>
+            <tr>
+              <td>Farma GDP/BPD: lote, caducidad FEFO y cadena de frío</td>
+              <td>Sí, en gama alta</td>
+              <td class="mid">Débil</td>
+              <td class="mid">Genérico</td>
               <td class="yes">Nativo, de serie</td>
             </tr>
             <tr>
-              <td>Modo offline real en la nave</td>
-              <td class="mid">Raro — depende del WiFi</td>
-              <td class="yes">Sí, offline-first</td>
-            </tr>
-            <tr>
-              <td>EDI 3PL 940 / 856 / 945 / 947 con tu cliente</td>
-              <td class="mid">Integración a medida (consultoría cara)</td>
-              <td class="yes">Incluido y validado contra spec real</td>
-            </tr>
-            <tr>
-              <td>Fabricación y co-packing con plantillas BOM</td>
-              <td class="mid">Módulo aparte o ausente</td>
-              <td class="yes">Incluido (kitting / manipulados)</td>
-            </tr>
-            <tr>
-              <td>Etiquetas GS1 de caja y palet con SSCC</td>
-              <td class="mid">Add-on de etiquetado</td>
-              <td class="yes">De serie (Code128)</td>
-            </tr>
-            <tr>
-              <td>Talón de porte y gestión de transporte</td>
-              <td class="mid">Normalmente otro sistema</td>
-              <td class="yes">Incluido</td>
-            </tr>
-            <tr>
               <td>Multi-depositante (operativa 3PL)</td>
-              <td class="mid">Solo en gama alta</td>
+              <td>Sí</td>
+              <td>Sí</td>
+              <td class="mid">Limitado</td>
               <td class="yes">Sí</td>
             </tr>
             <tr>
-              <td>Coste y despliegue</td>
-              <td class="mid">Licencias por usuario + implantación larga</td>
-              <td class="yes">A la medida de tu operativa, sin módulos que no usas</td>
+              <td>Fabricación y co-packing con plantillas BOM</td>
+              <td>Sí</td>
+              <td class="mid">Básico o no</td>
+              <td>Sí (MRP)</td>
+              <td class="yes">Sí (kitting / manipulados)</td>
+            </tr>
+            <tr>
+              <td>Etiquetas GS1 SSCC, albarán valorado y talón de porte</td>
+              <td>Sí</td>
+              <td class="mid">Parcial</td>
+              <td class="mid">Parcial</td>
+              <td class="yes">De serie</td>
+            </tr>
+            <tr>
+              <td>Coste</td>
+              <td class="mid">Alto + licencias</td>
+              <td class="mid">Suscripción por usuario</td>
+              <td class="mid">Por usuario y módulo</td>
+              <td class="yes">A la medida de tu operativa</td>
+            </tr>
+            <tr>
+              <td>Implantación</td>
+              <td class="mid">Larga (meses)</td>
+              <td>Rápida, pero genérica</td>
+              <td class="mid">Media / larga</td>
+              <td class="yes">Ágil y a medida</td>
             </tr>
             <tr>
               <td>Origen</td>
               <td class="mid">Diseñado por integradores</td>
-              <td class="yes">Diseñado y operado en un almacén 3PL farma real desde 2005</td>
+              <td class="mid">Pensado para ecommerce</td>
+              <td class="mid">Almacén como añadido al ERP</td>
+              <td class="yes">Operado en un 3PL farma real desde 2005</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="compare-note">Comparativa general orientativa frente a la tendencia del mercado; las capacidades concretas varían según el proveedor y la edición. ¿Quieres el detalle frente a tu WMS actual? <a href="/contacto/">Cuéntanoslo</a>.</p>
+      <p class="compare-note">Comparativa orientativa por familias de producto (no frente a un fabricante concreto); las capacidades varían según proveedor y edición. ¿Quieres el detalle frente a tu WMS actual? <a href="/contacto/">Cuéntanoslo</a>.</p>
     </div>
   </section>
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EDI para operadores logísticos: 940, 945, 856, 947 y DESADV explicados</title>
+  <meta name="description" content="Guía práctica del EDI en logística 3PL: qué son los mensajes 940 (pedido), 945 (confirmación de expedición), 947 (ajuste de inventario), 856 (ASN) y DESADV, cómo encajan en el flujo del almacén y en qué se diferencian ANSI X12 y EDIFACT.">
+  <link rel="canonical" href="https://labopack.com/guias/edi-para-operadores-logisticos/">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Labopack">
+  <meta property="og:title" content="EDI para operadores logísticos: 940, 945, 856, 947 y DESADV explicados">
+  <meta property="og:description" content="Qué son los mensajes EDI 940, 945, 947, 856 y DESADV, cómo encajan en el flujo de un operador logístico 3PL y en qué se diferencian ANSI X12 y EDIFACT.">
+  <meta property="og:url" content="https://labopack.com/guias/edi-para-operadores-logisticos/">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image" content="https://labopack.com/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://labopack.com/assets/og-image.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "EDI para operadores logísticos: 940, 945, 856, 947 y DESADV explicados",
+    "description": "Guía práctica del EDI en logística 3PL: qué son los mensajes 940, 945, 947, 856 y DESADV, cómo encajan en el flujo del almacén y en qué se diferencian ANSI X12 y EDIFACT.",
+    "author": { "@id": "https://labopack.com/#org" },
+    "publisher": { "@id": "https://labopack.com/#org" },
+    "mainEntityOfPage": "https://labopack.com/guias/edi-para-operadores-logisticos/",
+    "inLanguage": "es",
+    "image": "https://labopack.com/assets/og-image.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://labopack.com/" },
+      { "@type": "ListItem", "position": 2, "name": "LabopackWMS", "item": "https://labopack.com/wms/" },
+      { "@type": "ListItem", "position": 3, "name": "EDI para operadores logísticos", "item": "https://labopack.com/guias/edi-para-operadores-logisticos/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo.svg" alt="Labopack" width="169" height="34"></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </label>
+    <ul class="nav-links">
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/consultoria/">Consultoría</a></li>
+      <li><a href="/wms/">LabopackWMS</a></li>
+      <li><a href="/sectores/">Sectores</a></li>
+      <li><a class="btn" href="/contacto/">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+  <div class="hero article-hero">
+    <div class="container">
+      <p class="breadcrumb"><a href="/">Inicio</a> › <a href="/wms/">LabopackWMS</a> › EDI para operadores logísticos</p>
+      <p class="kicker">Guía · Logística 3PL</p>
+      <h1>EDI para operadores logísticos: 940, 945, 856, 947 y DESADV explicados</h1>
+    </div>
+  </div>
+
+  <section style="padding-top:24px;">
+    <div class="container">
+      <div class="article-body">
+
+        <p class="lead">Si gestionas un almacén para terceros (3PL), tarde o temprano un cliente te dirá que hay que "conectar por EDI". Esta guía explica, sin jerga, qué son los mensajes <strong>940, 945, 947, 856</strong> y <strong>DESADV</strong>, cómo encajan en el flujo de un operador logístico y en qué se diferencian los estándares <strong>ANSI X12</strong> y <strong>EDIFACT</strong>.</p>
+
+        <h2>Qué es el EDI y por qué te lo pide tu cliente</h2>
+        <p>EDI (<em>Electronic Data Interchange</em>) es el intercambio de documentos comerciales en un formato estructurado y normalizado, directamente entre dos sistemas informáticos, sin que nadie teclee ni envíe PDFs por correo. En un operador logístico, el <strong>depositante</strong> (el dueño de la mercancía) y tú (el almacén) os pasáis pedidos, confirmaciones y ajustes de stock en ese formato común.</p>
+        <p>¿Por qué te lo exigen? Porque elimina el tecleo manual y sus errores, deja trazabilidad de cada documento, y —sobre todo— es <strong>requisito de entrada</strong> para trabajar con grandes distribuidores, retailers y laboratorios farmacéuticos. Sin EDI, quedas fuera de muchas operativas.</p>
+
+        <h2>Los mensajes clave del flujo de almacén</h2>
+        <p>En la logística 3PL norteamericana, los mensajes de almacén son una familia de la norma ANSI X12 que empieza por <strong>94x</strong>. Estos son los que te encontrarás:</p>
+
+        <div class="table-wrap">
+          <table class="spec-table">
+            <tr><th>Mensaje</th><th>Nombre</th><th>Dirección</th><th>Qué transporta</th></tr>
+            <tr><td>940</td><td>Warehouse Shipping Order</td><td>Depositante → Almacén</td><td>La orden de preparar y expedir un pedido: qué artículos (SKU/EAN), cantidades y destino de envío.</td></tr>
+            <tr><td>945</td><td>Warehouse Shipping Advice</td><td>Almacén → Depositante</td><td>La confirmación de lo que <em>realmente</em> has expedido: cantidades preparadas, lotes, transportista y bultos.</td></tr>
+            <tr><td>947</td><td>Warehouse Inventory Adjustment Advice</td><td>Almacén → Depositante</td><td>Ajustes de inventario (mermas, roturas, recuentos) para que el stock del depositante cuadre con el físico.</td></tr>
+            <tr><td>943 / 944</td><td>Warehouse Stock Transfer Shipment / Receipt</td><td>Ambas</td><td>Menos habituales: envío y recepción de transferencias de stock entre ubicaciones o almacenes.</td></tr>
+            <tr><td>856</td><td>Ship Notice / Manifest (ASN)</td><td>Almacén/Depositante → Cliente final</td><td>El aviso de expedición al destinatario: qué va en el envío y cómo está empaquetado (cajas y palets con su SSCC), para que reciba "a ciegas".</td></tr>
+            <tr><td>DESADV</td><td>Despatch Advice (EDIFACT)</td><td>Almacén → Cliente final</td><td>El equivalente europeo del 856: el mismo aviso de expedición, en el estándar internacional EDIFACT.</td></tr>
+          </table>
+        </div>
+
+        <h2>El flujo completo, paso a paso</h2>
+        <p>Un ciclo típico de operador logístico encadena estos mensajes así:</p>
+        <ul>
+          <li><strong>1. Entra el pedido (940).</strong> El depositante te manda un 940 con lo que hay que servir. Tu WMS lo importa y crea el pedido/albarán.</li>
+          <li><strong>2. Preparas (picking).</strong> El operario prepara la mercancía, registrando cantidades reales y lotes.</li>
+          <li><strong>3. Confirmas y avisas (945 + 856/DESADV).</strong> Al expedir, generas el 945 para el depositante (qué has enviado) y el 856 o DESADV para el cliente final (qué recibe y en qué bultos).</li>
+          <li><strong>4. Cuadras el stock (947).</strong> Si hay un descuadre —una rotura, una merma, un recuento—, el 947 se lo comunica al depositante para que su inventario coincida con el tuyo.</li>
+        </ul>
+        <p>La clave operativa: cada mensaje tiene que salir <strong>completo, a tiempo y bien formado</strong>. Un 856/DESADV mal construido hace que el cliente rechace la recepción y te bloquee la descarga en muelle.</p>
+
+        <h2>ANSI X12 vs EDIFACT: por qué te afecta</h2>
+        <p>Hay dos grandes familias de estándares EDI y en España convives con las dos según el cliente:</p>
+        <ul>
+          <li><strong>ANSI X12</strong> — el estándar norteamericano. Es el de los números: 940, 945, 947, 856. Lo pedirán depositantes o clientes con matriz o cadena de suministro en EE. UU.</li>
+          <li><strong>EDIFACT</strong> — el estándar internacional (ONU), dominante en Europa. Usa nombres en lugar de números: ORDERS (pedido), DESADV (aviso de expedición), RECADV (aviso de recepción), INVRPT (inventario).</li>
+        </ul>
+        <p>Encima de cada estándar hay <strong>guías de implementación sectoriales</strong> que definen exactamente cómo rellenar cada segmento: AECOC en gran consumo español, o guías específicas de farma como COFARAN. Dos clientes que "usan DESADV" pueden pedirte el fichero de forma distinta — por eso no basta con "soportar EDI": hay que soportar <em>su</em> versión del EDI.</p>
+
+        <h2>Errores comunes y buenas prácticas</h2>
+        <ul>
+          <li><strong>Valida antes de enviar.</strong> Comprueba el fichero contra la especificación del cliente <em>antes</em> de mandarlo. Un segmento de más, una fecha en el formato equivocado o un contador mal, y el mensaje se rechaza.</li>
+          <li><strong>Cuida los identificadores.</strong> GLN de las partes, códigos de artículo (EAN/GTIN) y <strong>SSCC</strong> de cajas y palets bien construidos: son la columna vertebral del 856/DESADV.</li>
+          <li><strong>Automatiza el transporte.</strong> Recoge y entrega los ficheros por SFTP o AS2, no a mano. Y guarda el acuse de recibo.</li>
+          <li><strong>No improvises por cliente.</strong> Cada depositante nuevo trae su matiz; tener un sistema que parametrice el perfil EDI por cliente ahorra semanas de integración.</li>
+        </ul>
+
+        <div class="article-cta">
+          <h3>Cómo lo resuelve LabopackWMS</h3>
+          <p>LabopackWMS importa el <strong>940</strong> (por CSV o SFTP) y genera <strong>945</strong>, <strong>856/DESADV</strong> y <strong>947</strong>, validando cada fichero contra la especificación real del cliente (incluida la guía COFARAN de farma) antes de enviarlo. Sin integraciones a medida carísimas y con el flujo 3PL completo de serie.</p>
+          <p><a class="btn" href="/wms/">Ver LabopackWMS →</a> &nbsp; <a class="btn ghost" href="/contacto/">Solicita una demo</a></p>
+        </div>
+
+        <p class="note">Los nombres y números de mensaje corresponden a los estándares públicos ANSI X12 y EDIFACT; esta guía simplifica el detalle técnico para claridad operativa. Las guías sectoriales (AECOC, COFARAN) definen el uso concreto de cada segmento.</p>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Labopack, S.L.</h4>
+        <p>Consultoría logística y tecnológica y software de gestión de almacén.
+        Empresa de packaging y logística en Madrid desde 2004.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="/consultoria/">Consultoría</a></li>
+          <li><a href="/wms/">LabopackWMS</a></li>
+          <li><a href="/sectores/">Sectores</a></li>
+          <li><a href="/contacto/">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;</a></li>
+          <li><a href="https://www.linkedin.com/in/luiscardiel" rel="noopener">LinkedIn</a></li>
+          <li>Madrid, España</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-partner-row"><span class="footer-partner"><a href="https://www.ecaweb.es" rel="noopener" title="Ecaweb — desarrollo y soporte informático"><img src="/assets/ecaweb-logo.png" alt="Ecaweb" width="20" height="20"> Partner tecnológico: Ecaweb</a></span></p>
+    <div class="footer-legal">
+      © 2026 Labopack, S.L. · <a href="/aviso-legal/">Aviso legal y privacidad</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

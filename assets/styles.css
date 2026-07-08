@@ -195,6 +195,25 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .compare-table td.mid { color: var(--muted); }
 .compare-note { color: var(--muted); font-size: 0.82rem; margin: 14px 0 0; }
 
+/* ---------- Artículo / guía long-form ---------- */
+.article-hero { padding: 64px 0 8px; }
+.breadcrumb { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--accent); }
+.article-body { max-width: 760px; }
+.article-body h2 { font-size: clamp(1.4rem, 2.6vw, 1.7rem); margin: 44px 0 12px; letter-spacing: -0.2px; }
+.article-body h3 { font-size: 1.14rem; margin: 26px 0 8px; }
+.article-body p { margin: 0 0 16px; }
+.article-body ul { margin: 0 0 18px; padding-left: 22px; }
+.article-body li { margin-bottom: 8px; }
+.article-body strong { color: var(--text); }
+.article-body .article-cta {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 26px 28px; margin: 36px 0 8px;
+}
+.article-body .article-cta h3 { margin-top: 0; }
+.article-body .note { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 16px; margin-top: 34px; }
+
 /* ---------- Partner tecnológico ---------- */
 .partner {
   display: flex; align-items: center; gap: 24px;
