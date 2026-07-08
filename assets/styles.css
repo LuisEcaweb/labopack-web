@@ -195,6 +195,13 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .compare-table td.mid { color: var(--muted); }
 .compare-note { color: var(--muted); font-size: 0.82rem; margin: 14px 0 0; }
 
+/* ---------- Casos de éxito ---------- */
+.case p { margin: 0 0 10px; color: var(--muted); font-size: 0.98rem; }
+.case p:last-of-type { margin-bottom: 0; }
+.case p strong { color: var(--text); }
+.case .anon { display: block; color: var(--muted); font-size: 0.85rem; font-style: italic; margin-bottom: 12px; }
+.case .case-tag { color: var(--accent); font-weight: 700; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 14px; }
+
 /* ---------- Artículo / guía long-form ---------- */
 .article-hero { padding: 64px 0 8px; }
 .breadcrumb { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
