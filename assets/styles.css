@@ -171,6 +171,56 @@ section.alt { background: var(--surface); border-top: 1px solid var(--border); b
 .spec-table td:first-child { color: var(--text); font-weight: 600; }
 .table-wrap { overflow-x: auto; }
 
+/* ---------- Flujo operativo (pipeline del almacén) ---------- */
+.flow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin: 0 0 10px; }
+.flow .step {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 999px; padding: 8px 18px; font-weight: 700; font-size: 0.9rem; color: var(--text);
+}
+.flow .arrow { color: var(--accent); font-weight: 800; }
+
+/* ---------- Grupos de módulos ---------- */
+.module-group { margin-top: 42px; }
+.module-group > h3 {
+  font-size: 1.1rem; margin: 0 0 4px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 1.2px; font-size: 0.9rem;
+}
+.module-group .mg-sub { color: var(--muted); margin: 0 0 18px; font-size: 0.98rem; max-width: 46rem; }
+
+/* ---------- Tabla comparativa ---------- */
+.compare-table col.col-us { background: rgba(56, 189, 248, 0.07); }
+.compare-table th:not(:first-child), .compare-table td:not(:first-child) { text-align: center; }
+.compare-table th.us { color: var(--text); }
+.compare-table td.yes { color: var(--ok); font-weight: 700; }
+.compare-table td.mid { color: var(--muted); }
+.compare-note { color: var(--muted); font-size: 0.82rem; margin: 14px 0 0; }
+
+/* ---------- Partner tecnológico ---------- */
+.partner {
+  display: flex; align-items: center; gap: 24px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px 28px; max-width: 780px; margin: 0 auto;
+}
+.partner img.p-logo { width: 64px; height: 64px; flex-shrink: 0; }
+.partner .p-body { margin: 0; color: var(--muted); font-size: 0.98rem; }
+.partner .p-body strong { color: var(--text); }
+.partner .p-kicker {
+  color: var(--accent); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; font-size: 0.72rem; display: block; margin-bottom: 6px;
+}
+@media (max-width: 860px) { .partner { flex-direction: column; text-align: center; } }
+
+/* Línea de partner en el footer */
+.footer-partner-row { margin: 2px 0 18px; }
+.footer-partner { display: inline-flex; align-items: center; gap: 8px; }
+.footer-partner a { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 600; }
+.footer-partner a:hover { color: var(--accent); }
+.footer-partner img { width: 20px; height: 20px; }
+
+/* Franja de partner en la home */
+.partner-inline { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
+.partner-inline img { width: 30px; height: 30px; }
+
 /* ---------- Contacto ---------- */
 .contact-block {
   display: flex; flex-direction: column; gap: 18px; align-items: flex-start;
