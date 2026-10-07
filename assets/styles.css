@@ -21,6 +21,8 @@
   --linea: #C6C2BA;
   --linea-fuerte: #847C70;
   --teja: #AA2300;
+  --sobre-ink: #A49A8F;    /* texto secundario sobre la banda oscura */
+  --brasa: #F0704A;        /* acento SOLO sobre oscuro: 5.68 sobre --tinta */
 
   /* Espaciado: múltiplos de 4 con saltos deliberados. */
   --e1: 4px;  --e2: 8px;   --e3: 14px;  --e4: 22px;
@@ -160,6 +162,21 @@ img { max-width: 100%; height: auto; }
   color: var(--tinta);
   border-color: var(--linea-fuerte);
 }
+/* Sobre la banda oscura el acento es --brasa, la parada alta del logo. --teja
+   sobre --tinta da 2.35: el boton no se distinguiria del fondo. Es el mismo
+   acento de marca, en la version que esa superficie admite. */
+.hero .btn {
+  background: var(--brasa);
+  border-color: var(--brasa);
+  color: var(--tinta);
+}
+.hero .btn:hover { background: var(--papel); border-color: var(--papel); }
+.hero .btn.ghost { background: transparent; color: var(--papel); border-color: var(--sobre-ink); }
+.hero .btn.ghost:hover { color: var(--brasa); border-color: var(--brasa); }
+
+/* Las migas viven dentro de la banda oscura. */
+.hero .breadcrumb, .hero .breadcrumb a { color: var(--sobre-ink); }
+.hero .breadcrumb a:hover { color: var(--brasa); }
 .btn.ghost:hover { background: transparent; border-color: var(--teja); color: var(--teja); }
 
 /* El enlace de acción se marca con subrayado, no con un carácter. */
@@ -184,10 +201,28 @@ img { max-width: 100%; height: auto; }
 
 /* ---------- Hero ---------- */
 
-.hero { padding: var(--e8) 0 var(--e6); }
+/* El hero y las cifras forman una sola banda oscura a sangre. Es el unico
+   momento con peso de la pagina; todo lo que viene despues calla. */
+.hero {
+  background: var(--tinta);
+  color: var(--papel);
+  padding: var(--e8) 0 var(--e7);
+  position: relative;
+}
+/* La matriz cierra la banda oscura. En la home la banda sigue con las cifras,
+   asi que alli la cierran ellas y aqui estorba. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 40px;
+  background: url(/assets/matriz.svg) repeat-x left bottom / auto 40px;
+  opacity: 0.55;
+}
+.hero:has(+ section.cifras)::after { display: none; }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 6.2vw, 4.5rem);
+  font-size: clamp(2.35rem, 7.4vw, 5.4rem);
   font-variation-settings: "wdth" 114;
   line-height: 1.02;
   letter-spacing: -0.025em;
@@ -198,7 +233,7 @@ img { max-width: 100%; height: auto; }
 .hero .lead {
   font-size: 1.16rem;
   line-height: 1.62;
-  color: var(--grafito);
+  color: var(--sobre-ink);
   max-width: 60ch;
   margin-bottom: var(--e6);
 }
@@ -206,7 +241,7 @@ img { max-width: 100%; height: auto; }
 /* ---------- Cifras: lista medida, alineada por la derecha ---------- */
 
 .stats {
-  border-top: 3px solid var(--tinta);
+  border-top: 1px solid var(--sobre-ink);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -217,7 +252,7 @@ img { max-width: 100%; height: auto; }
   gap: clamp(var(--e4), 4vw, var(--e6));
   align-items: baseline;
   padding: var(--e4) 0;
-  border-bottom: 1px solid var(--linea);
+  border-bottom: 1px solid rgba(245, 244, 241, 0.16);
 }
 .stat .num {
   font-size: clamp(2rem, 4.4vw, 3.1rem);
@@ -225,16 +260,32 @@ img { max-width: 100%; height: auto; }
   font-variation-settings: "wdth" 108;
   letter-spacing: -0.03em;
   line-height: 1;
-  color: var(--teja);
+  color: var(--papel);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.stat .label { color: var(--grafito); max-width: 48ch; }
+.stat .label { color: var(--sobre-ink); max-width: 48ch; }
 
 /* ---------- Secciones ---------- */
 
 section { padding: var(--e7) 0; }
-section.cifras { padding-top: 0; }
+section.cifras {
+  background: var(--tinta);
+  color: var(--papel);
+  padding-top: 0;
+  padding-bottom: var(--e7);
+  position: relative;
+}
+/* La matriz de modulos del logo, a escala, cerrando la banda. Es la marca
+   misma: el mundo de la etiqueta y el escaner, que es el negocio. */
+section.cifras::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 40px;
+  background: url(/assets/matriz.svg) repeat-x left bottom / auto 40px;
+  opacity: 0.55;
+}
 
 .section-title {
   font-size: clamp(1.9rem, 3.4vw, 2.6rem);
@@ -283,6 +334,53 @@ section.cifras { padding-top: 0; }
   color: var(--grafito);
 }
 .partner-inline img { width: 24px; height: 24px; }
+
+/* ---------- Las dos vias: no son equivalentes, no van al 50/50 ----------
+   La consultoria es un servicio; LabopackWMS es el producto y la pagina a la
+   que se quiere llevar. El reparto 5/7 y la superficie lo dicen sin texto.
+   ------------------------------------------------------------------------- */
+
+.vias .grid.cols-2 {
+  grid-template-columns: 5fr 7fr;
+  gap: var(--e7);
+  align-items: start;
+}
+.vias .path-card:last-child {
+  background: var(--papel);
+  padding: var(--e5);
+  border-top-width: 5px;
+}
+
+/* ---------- Las tres razones: banda densa, no tres columnas de aire ---------- */
+
+.razones {
+  background: var(--papel);
+  border-top: 1px solid var(--linea-fuerte);
+  border-bottom: 1px solid var(--linea-fuerte);
+}
+.razones .grid.cols-3 { gap: var(--e5); }
+.razones .card { border-top-color: var(--teja); border-top-width: 3px; }
+.razones .card h3 { font-size: 1.35rem; }
+
+/* ---------- La cita: el segundo momento, no una linea mas ---------- */
+
+.cita .claim {
+  border-left: 0;
+  padding-left: 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  font-variation-settings: "wdth" 104;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+}
+.cita .claim .who {
+  display: block;
+  width: fit-content;
+  margin-top: var(--e5);
+  padding-top: var(--e3);
+  border-top: 3px solid var(--teja);
+}
 
 /* ---------- Tarjetas: sin caja, separadas por una regla ---------- */
 
@@ -718,7 +816,12 @@ section.cifras { padding-top: 0; }
 
   section { padding: var(--e6) 0; }
 
-  .grid.cols-2, .grid.cols-3 { grid-template-columns: 1fr; }
+  /* La especificidad no sube por estar dentro de un @media: hay que igualar
+     o superar la del selector que se quiere pisar. */
+  .grid.cols-2, .grid.cols-3,
+  .vias .grid.cols-2 { grid-template-columns: 1fr; }
+  .vias .grid.cols-2 { gap: var(--e5); }
+  .vias .path-card:last-child { padding: var(--e4); }
   .grid { gap: var(--e5); }
   .footer-grid { grid-template-columns: 1fr; gap: var(--e5); }
 
