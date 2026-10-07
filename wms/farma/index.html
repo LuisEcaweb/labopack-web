@@ -7,6 +7,8 @@
   <meta name="description" content="Software de gestión de almacén (WMS) para distribución farmacéutica bajo GDP/BPD: control de lote, caducidad (FEFO) y cadena de frío, lectura del DataMatrix GS1 del medicamento (verificación SEVeM bajo demanda), trazabilidad end-to-end y operativa preparada para inspecciones de la AEMPS. Diseñado en un almacén 3PL farma real.">
   <link rel="canonical" href="https://labopack.com/wms/farma/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preload" href="/assets/fonts/instrumentsans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Labopack">
@@ -47,9 +49,9 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo.svg" alt="Labopack" width="169" height="34"></a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
-    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo-icono.svg" alt="" width="29" height="34" aria-hidden="true"><span class="brand-nombre">Labopack</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">
+    <label for="nav-toggle" class="nav-toggle-label">
       <span></span><span></span><span></span>
     </label>
     <ul class="nav-links">
@@ -68,8 +70,7 @@
   <div class="hero article-hero">
     <div class="container">
       <p class="breadcrumb"><a href="/">Inicio</a> › <a href="/wms/">LabopackWMS</a> › Farma</p>
-      <p class="kicker">LabopackWMS · Distribución farmacéutica</p>
-      <h1>El software de almacén que ya sabe lo que <span class="hl">mira el inspector.</span></h1>
+      <h1>El software de almacén que ya sabe lo que mira el inspector.</h1>
       <p class="lead">
         LabopackWMS es un software de gestión de almacén (WMS) para distribución farmacéutica bajo <strong>GDP/BPD</strong>: lote, caducidad y
         cadena de frío, lectura del DataMatrix del medicamento, trazabilidad de punta a punta y la
@@ -77,44 +78,38 @@
         almacén 3PL farmacéutico real y se opera ahí cada día.
       </p>
       <div class="cta-row">
-        <a class="btn" href="/contacto/">Solicita una demo →</a>
+        <a class="btn" href="/contacto/">Solicita una demo</a>
         <a class="btn ghost" href="/wms/">Ver todo LabopackWMS</a>
       </div>
     </div>
   </div>
 
-  <section class="alt">
+  <section class="claro">
     <div class="container">
       <h2 class="section-title">Lo que exige la distribución farmacéutica</h2>
       <p class="section-sub">GDP/BPD no perdona: cada unidad con su lote, su caducidad y su temperatura, y cada movimiento auditado. Aquí es nativo, no un módulo añadido.</p>
       <div class="grid cols-3">
         <div class="card feature">
-          <span class="icon">🧊</span>
           <h3>Lote, caducidad y cadena de frío</h3>
           <p>Trazabilidad completa por lote y fecha de caducidad con salida FEFO, y marcado de producto que requiere frío. Lo que exige GDP/BPD para no jugarte la calidad ni la inspección.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🔎</span>
           <h3>DataMatrix y SEVeM</h3>
           <p>Lectura del DataMatrix GS1 del medicamento (código, lote, caducidad y número de serie) en recepción y picking. Verificación contra el nodo SEVeM disponible <strong>bajo demanda</strong>.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🧬</span>
           <h3>Trazabilidad end-to-end</h3>
           <p>De la entrada a la expedición: qué lote entró, dónde se ubicó, en qué pedido salió y a quién. La cadena completa reconstruible ante una reclamación o una retirada.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🩺</span>
           <h3>Preparado para inspecciones</h3>
           <p>Registros, ajustes con motivo y auditoría de usuario y fecha, y alertas de stock bajo y caducidad próxima. La operativa alineada con lo que revisan la AEMPS y las auditorías logísticas.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🔄</span>
           <h3>EDI con tus distribuidores</h3>
           <p>Intercambio EDI de pedidos y avisos de expedición (940 / 856-DESADV / 945 / 947) validado contra la especificación del cliente, incluida la guía COFARAN de farma.</p>
         </div>
         <div class="card feature">
-          <span class="icon">📡</span>
           <h3>Offline y escáner</h3>
           <p>Picking con escáner Android que funciona sin cobertura y sincroniza al recuperar señal. La cámara de frío o el fondo de la nave no dejan tu operativa a ciegas.</p>
         </div>
@@ -124,6 +119,12 @@
 
   <section>
     <div class="container">
+      <figure class="captura">
+        <img src="/assets/capturas/wms-lotes-farma.webp" alt="Tabla de stock en detalle con una fila por lote, mostrando número de lote, fecha de caducidad, cantidad, almacén y estado."
+             width="1520" height="742" loading="lazy" decoding="async">
+        <figcaption>Stock por lote con su caducidad y su estado: disponible, bloqueado, en cuarentena o en destrucción. Datos de demostración.</figcaption>
+      </figure>
+
       <h2 class="section-title">¿Es para ti?</h2>
       <ul class="checklist">
         <li><strong>Distribuyes o almacenas medicamentos</strong> bajo GDP/BPD y necesitas trazabilidad de lote y caducidad sin fisuras.</li>
@@ -134,16 +135,15 @@
     </div>
   </section>
 
-  <section class="alt">
+  <section class="claro">
     <div class="container">
-      <div class="partner" style="border-color: var(--accent-strong);">
-        <span class="icon" style="font-size:1.8rem;">💊</span>
+      <div class="partner">
         <p class="p-body">
-          <span class="p-kicker">Diferencia</span>
+          <span class="p-rotulo">Diferencia</span>
           <strong>Diseñado para el sector más exigente — y operado en él.</strong> LabopackWMS gestiona cada
           día un almacén 3PL farmacéutico real bajo GDP/BPD. Si supera lotes, caducidades, frío e
           inspecciones de farma, gestiona tu almacén sea cual sea tu sector.
-          <a href="/wms/">Ver el alcance completo →</a>
+          <a href="/wms/">Ver el alcance completo</a>
         </p>
       </div>
     </div>
@@ -153,7 +153,7 @@
     <div class="container">
       <h2>Míralo en un almacén farma de verdad</h2>
       <p>Sin presentaciones: te lo enseñamos moviendo medicamentos con su lote y su caducidad, en operativa real bajo GDP.</p>
-      <a class="btn" href="/contacto/">Solicita una demo →</a>
+      <a class="btn" href="/contacto/">Solicita una demo</a>
     </div>
   </section>
 
@@ -163,12 +163,12 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>Labopack, S.L.</h4>
+        <h3>Labopack, S.L.</h3>
         <p>Consultoría logística y tecnológica y software de gestión de almacén.
         Empresa de packaging y logística en Madrid desde 2004.</p>
       </div>
       <div>
-        <h4>Navegación</h4>
+        <h3>Navegación</h3>
         <ul>
           <li><a href="/consultoria/">Consultoría</a></li>
           <li><a href="/wms/">LabopackWMS</a></li>
@@ -180,7 +180,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;</a></li>
           <li><a href="https://www.linkedin.com/in/luiscardiel" rel="noopener">LinkedIn</a></li>

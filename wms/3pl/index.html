@@ -7,6 +7,8 @@
   <meta name="description" content="Software de gestión de almacenes (WMS/SGA) para operadores logísticos 3PL multidepositante: inventario, reglas y facturación por depositante, EDI 940/856/945/947, co-packing y kitting, etiquetas GS1 SSCC y modo offline. Diseñado y operado en un 3PL real. Sin el coste ni la implantación de una suite grande.">
   <link rel="canonical" href="https://labopack.com/wms/3pl/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preload" href="/assets/fonts/instrumentsans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Labopack">
@@ -47,9 +49,9 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo.svg" alt="Labopack" width="169" height="34"></a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
-    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo-icono.svg" alt="" width="29" height="34" aria-hidden="true"><span class="brand-nombre">Labopack</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">
+    <label for="nav-toggle" class="nav-toggle-label">
       <span></span><span></span><span></span>
     </label>
     <ul class="nav-links">
@@ -68,8 +70,7 @@
   <div class="hero article-hero">
     <div class="container">
       <p class="breadcrumb"><a href="/">Inicio</a> › <a href="/wms/">LabopackWMS</a> › 3PL</p>
-      <p class="kicker">LabopackWMS · Operador logístico 3PL</p>
-      <h1>Un almacén, muchos depositantes.<br><span class="hl">Un solo software de almacén que lo controla.</span></h1>
+      <h1>Un almacén, muchos depositantes. Un solo software de almacén que lo controla.</h1>
       <p class="lead">
         LabopackWMS es un software de gestión de almacenes (WMS/SGA) pensado para <strong>operadores logísticos 3PL</strong>: gestiona el
         inventario, las reglas y la facturación de varios clientes en el mismo almacén, habla EDI con
@@ -77,44 +78,38 @@
         y lo operamos cada día en nuestro propio 3PL farmacéutico.
       </p>
       <div class="cta-row">
-        <a class="btn" href="/contacto/">Solicita una demo →</a>
+        <a class="btn" href="/contacto/">Solicita una demo</a>
         <a class="btn ghost" href="/wms/">Ver todo LabopackWMS</a>
       </div>
     </div>
   </div>
 
-  <section class="alt">
+  <section class="claro">
     <div class="container">
       <h2 class="section-title">Lo que un 3PL necesita de verdad</h2>
       <p class="section-sub">Multi-depositante, EDI y facturación por actividad no son extras: son el mínimo para operar para terceros. Aquí vienen de serie.</p>
       <div class="grid cols-3">
         <div class="card feature">
-          <span class="icon">🗂️</span>
           <h3>Multi-depositante real</h3>
           <p>Inventario, reglas y documentos separados por cliente en el mismo almacén. Cada depositante ve lo suyo y cada movimiento queda ligado a su lógica.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🔄</span>
           <h3>EDI de 3PL completo</h3>
           <p>Importa pedidos EDI 940 y genera 856 (DESADV), 945 (Shipping Advice) y 947 (ajuste de inventario), validados contra la especificación de cada cliente. Hablas el idioma de los grandes distribuidores.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🧾</span>
           <h3>Facturación por actividad</h3>
           <p>Imputación de tareas por depositante para facturar lo que de verdad haces: entradas, preparaciones, expediciones, manipulados. El corazón del negocio de un 3PL.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🧩</span>
           <h3>Servicios de valor añadido</h3>
           <p>Co-packing, kitting y manipulados con plantillas BOM: el trabajo con más margen de un operador, gestionado dentro del WMS y no en una hoja aparte.</p>
         </div>
         <div class="card feature">
-          <span class="icon">🏷️</span>
           <h3>Etiquetas GS1 y documentos</h3>
           <p>Etiquetas de caja y palet con SSCC (Code128), albarán valorado en PDF y talón de porte. La documentación que piden tus clientes, generada por el sistema.</p>
         </div>
         <div class="card feature">
-          <span class="icon">📡</span>
           <h3>Offline en la nave</h3>
           <p>Picking con escáner Android que sigue funcionando sin cobertura y sincroniza al recuperar señal. Tu operativa no se para porque el WiFi no llegue al fondo del almacén.</p>
         </div>
@@ -124,6 +119,12 @@
 
   <section>
     <div class="container">
+      <figure class="captura">
+        <img src="/assets/capturas/wms-stock-3pl.webp" alt="Tabla de gestión de stock por SKU con las columnas de total, disponible, reservado, bloqueado y los almacenes donde está cada artículo."
+             width="1520" height="750" loading="lazy" decoding="async">
+        <figcaption>Gestión de stock por SKU: existencias totales, disponibles, reservadas y bloqueadas, con el almacén de cada una. Datos de demostración.</figcaption>
+      </figure>
+
       <h2 class="section-title">¿Es para ti?</h2>
       <ul class="checklist">
         <li><strong>Operas para varios clientes</strong> y necesitas separar inventario, reglas y facturación por cada uno.</li>
@@ -134,16 +135,15 @@
     </div>
   </section>
 
-  <section class="alt">
+  <section class="claro">
     <div class="container">
-      <div class="partner" style="border-color: var(--accent-strong);">
-        <span class="icon" style="font-size:1.8rem;">🏭</span>
+      <div class="partner">
         <p class="p-body">
-          <span class="p-kicker">Diferencia</span>
+          <span class="p-rotulo">Diferencia</span>
           <strong>No es un WMS diseñado por integradores.</strong> Nació en un almacén 3PL farmacéutico real
           (origen en 2005, reescrito en 2024) y se sigue operando ahí cada día. Cada función existe porque
           hizo falta moviendo pedidos de verdad — no porque quedara bien en un catálogo.
-          <a href="/wms/">Ver el alcance completo →</a>
+          <a href="/wms/">Ver el alcance completo</a>
         </p>
       </div>
     </div>
@@ -153,7 +153,7 @@
     <div class="container">
       <h2>Míralo con tus pedidos</h2>
       <p>Sin PowerPoint: te lo enseñamos moviendo mercancía de verdad, en un 3PL que opera cada día.</p>
-      <a class="btn" href="/contacto/">Solicita una demo →</a>
+      <a class="btn" href="/contacto/">Solicita una demo</a>
     </div>
   </section>
 
@@ -163,12 +163,12 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>Labopack, S.L.</h4>
+        <h3>Labopack, S.L.</h3>
         <p>Consultoría logística y tecnológica y software de gestión de almacén.
         Empresa de packaging y logística en Madrid desde 2004.</p>
       </div>
       <div>
-        <h4>Navegación</h4>
+        <h3>Navegación</h3>
         <ul>
           <li><a href="/consultoria/">Consultoría</a></li>
           <li><a href="/wms/">LabopackWMS</a></li>
@@ -180,7 +180,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;</a></li>
           <li><a href="https://www.linkedin.com/in/luiscardiel" rel="noopener">LinkedIn</a></li>

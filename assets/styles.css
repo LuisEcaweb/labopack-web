@@ -1,292 +1,911 @@
-/* ============================================================
-   LABOPACK.COM — hoja de estilos única
-   Estética: tech oscuro · sin dependencias externas · mobile-first
-   ============================================================ */
+/* ==========================================================================
+   Labopack — dirección «Muelle»
+   La fuente de verdad del diseño es .claude/skills/labopack-design/SKILL.md.
+   Antes de cambiar un token o añadir un patrón, léela.
+   ========================================================================== */
 
-:root {
-  --bg: #0a0f1c;
-  --surface: #101a2c;
-  --surface-2: #16233a;
-  --border: #22304a;
-  --text: #e6edf6;
-  --muted: #93a7c4;
-  --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
-  --ok: #34d399;
-  --radius: 14px;
-  --maxw: 1080px;
-  --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+@font-face {
+  font-family: Fraunces;
+  src: url(/assets/fonts/fraunces-variable.woff2) format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
 }
 
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+@font-face {
+  font-family: "Instrument Sans";
+  src: url(/assets/fonts/instrumentsans-variable.woff2) format("woff2");
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
+  font-display: swap;
+}
+
+
+
+:root {
+  /* El azul marino y el celeste de la web original. No eran un rasgo de
+     plantilla: son el activo de color que ya funcionaba, y son lo coherente
+     con la interfaz de LabopackWMS, que es turquesa.
+     Contrastes medidos en la skill: no cambiar sin volver a medir. */
+  --marino: #0A0F1C;       /* fondo de pagina */
+  --marino-2: #111A2B;     /* superficie elevada: cabecera, pie, destacados */
+  --texto: #E6EDF6;        /* texto principal */
+  --apagado: #93A7C4;      /* texto secundario */
+  --linea: #223049;        /* separadores decorativos */
+  --linea-fuerte: #52678F; /* bordes que delimitan un control */
+  --cian: #38BDF8;         /* UNICO color de acento */
+
+  /* Las secciones claras redefinen los tokens de arriba en su propio ambito
+     (ver "Secciones alternas"), asi que todo el CSS se invierte solo. Estos son
+     los valores que toman alli. */
+  --claro: #F2F5F9;
+  --claro-texto: #0A0F1C;
+  --claro-apagado: #3C4C66;
+  --claro-cian: #0B74A8;
+  --claro-linea: #D4DCE6;
+  --claro-linea-fuerte: #7D93AE;
+  --superficie: #16213A;   /* superficie de tarjeta sobre marino */
+  --radio: 18px;           /* radio de las tarjetas, tomado de la referencia */
+
+  /* Espaciado: multiplos de 4 con saltos deliberados. */
+  --e1: 4px;  --e2: 8px;   --e3: 14px;  --e4: 22px;
+  --e5: 34px; --e6: 56px;  --e7: 88px;  --e8: 136px;
+
+  --maxw: 1180px;
+  --medida: 66ch;   /* medida maxima de linea en texto corriente */
+}
+
+/* ---------- Base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-  font-size: 17px;
+  background: var(--marino);
+  color: var(--texto);
+  font-family: "Instrument Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
+/* Los titulares en Fraunces: el serif variable es la voz de la direccion.
+   El cuerpo en Instrument Sans, claramente distinto. */
+h1, h2, h3, h4 {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 500;
+  font-variation-settings: "SOFT" 28, "WONK" 1, "opsz" 64;
+  line-height: 1.15;
+  margin: 0 0 var(--e3);
+  text-wrap: balance;
+}
+
+p { margin: 0 0 var(--e4); max-width: var(--medida); }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--cian); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
 
 img { max-width: 100%; height: auto; }
 
-a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+:focus-visible {
+  outline: 3px solid var(--cian);
+  outline-offset: 2px;
+}
 
-.container { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+.container {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--e5);
+}
 
-/* ---------- Header / Nav ---------- */
+/* Visible solo para lectores de pantalla. */
+.vo {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- Cabecera ---------- */
+
+/* La cabecera acompana al bajar. /wms/ mide 11.162px: sin esto te quedas sin
+   navegacion durante doce pantallas. Opaca, no translucida: el desenfoque esta
+   prohibido (ver 7) y ademas aqui no hace falta. */
 .site-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(10, 15, 28, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--marino-2);
+  border-bottom: 1px solid var(--linea-fuerte);
 }
-.nav {
-  display: flex; align-items: center; justify-content: space-between;
-  min-height: 64px; gap: 16px;
+
+/* Con la cabecera fija, un salto a un ancla aterriza debajo de ella. */
+[id] { scroll-margin-top: 96px; }
+
+.site-header .nav {
+  display: flex;
+  align-items: center;
+  gap: var(--e5);
+  min-height: 78px;
 }
+
 .brand {
-  display: flex; align-items: center; gap: 10px;
-  font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px;
-  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-right: auto;
+  text-decoration: none;
+  color: var(--cian);
 }
-.brand:hover { text-decoration: none; }
-.brand .brand-logo { height: 34px; width: auto; display: block; }
+.brand-logo { display: block; height: 34px; width: auto; }
+.brand-nombre {
+  font-family: Fraunces, Georgia, serif;
+  font-variation-settings: "SOFT" 20, "WONK" 1, "opsz" 48;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1;
+}
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--e4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a:not(.btn) {
+  color: var(--apagado);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.nav-links a:not(.btn):hover { color: var(--texto); border-bottom-color: var(--linea-fuerte); }
+.nav-links a:not(.btn)[aria-current] { color: var(--texto); border-bottom-color: var(--cian); }
+.nav-links a.btn { border-bottom: 0; }
+
+/* Menú de móvil sin JavaScript: una casilla gobierna el desplegable.
+   En escritorio desaparece del todo para que nadie tabule a un control
+   invisible; en móvil vuelve, enfocable pero sin ocupar sitio. */
 .nav-toggle { display: none; }
-.nav-toggle-label {
-  display: none; cursor: pointer; padding: 8px;
-  flex-direction: column; gap: 5px;
-}
-.nav-toggle-label span {
-  display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px;
-}
+.nav-toggle-label { display: none; }
 
-.nav-links { display: flex; align-items: center; gap: 26px; list-style: none; margin: 0; padding: 0; }
-.nav-links a { color: var(--muted); font-weight: 600; font-size: 0.95rem; }
-.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); text-decoration: none; }
-.nav-links a[aria-current="page"] { border-bottom: 2px solid var(--accent); padding-bottom: 3px; }
-.nav-links .btn { color: #06121f; }
+/* ---------- Botones y enlaces de acción ---------- */
 
-/* ---------- Botones ---------- */
 .btn {
-  display: inline-block; padding: 12px 22px; border-radius: 10px;
-  font-weight: 700; font-size: 0.95rem; letter-spacing: 0.2px;
-  background: var(--accent); color: #06121f;
-  transition: transform 0.12s ease, background 0.12s ease;
+  display: inline-block;
+  background: var(--cian);
+  color: var(--marino);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 13px 26px;
+  border: 2px solid var(--cian);
+  border-radius: 999px;
 }
-.btn:hover { background: #7dd3fc; text-decoration: none; transform: translateY(-1px); }
+.btn:hover { background: var(--texto); border-color: var(--texto); color: var(--marino); }
+
+/* El boton secundario es una pastilla perfilada en el acento, como la
+   referencia. --linea-fuerte daba 2.88 sobre la seccion clara. */
 .btn.ghost {
-  background: transparent; color: var(--text);
-  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--cian);
+  border-color: var(--cian);
 }
-.btn.ghost:hover { border-color: var(--accent); background: rgba(56, 189, 248, 0.08); }
+/* Sobre la banda oscura el acento es --brasa, la parada alta del logo. --teja
+   sobre --tinta da 2.35: el boton no se distinguiria del fondo. Es el mismo
+   acento de marca, en la version que esa superficie admite. */
+/* Las migas viven dentro de la banda oscura. */
+.hero .breadcrumb, .hero .breadcrumb a { color: var(--apagado); }
+.hero .breadcrumb a:hover { color: var(--cian); }
+.btn.ghost:hover { background: var(--cian); border-color: var(--cian); color: var(--marino); }
+
+/* El enlace de acción se marca con subrayado, no con un carácter. */
+.more {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--texto);
+  text-decoration: none;
+  border-bottom: 2px solid var(--cian);
+  padding-bottom: 1px;
+}
+.more:hover { color: var(--cian); }
+
+.cta-row.centrada { justify-content: center; }
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--e5);
+  flex-wrap: wrap;
+}
 
 /* ---------- Hero ---------- */
-.hero { padding: 84px 0 64px; }
-.hero .kicker {
-  color: var(--accent); font-weight: 700; text-transform: uppercase;
-  letter-spacing: 2px; font-size: 0.8rem; margin: 0 0 14px;
+
+.hero {
+  padding: var(--e8) 0;
+  text-align: center;
 }
+
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  line-height: 1.12; margin: 0 0 20px; letter-spacing: -0.5px;
+  font-size: clamp(2.35rem, 7.4vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  max-width: 18ch;
+  margin: 0 auto var(--e5);
 }
-.hero h1 .hl { color: var(--accent); }
-.hero .lead { color: var(--muted); font-size: 1.15rem; max-width: 46rem; margin: 0 0 32px; }
-.hero .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero .lead {
+  font-size: 1.28rem;
+  line-height: 1.6;
+  color: var(--apagado);
+  max-width: 58ch;
+  margin: 0 auto var(--e6);
+}
+.hero .cta-row { justify-content: center; }
+
+/* ---------- El producto en la portada ----------
+   Una interfaz clara a pantalla completa sobre el fondo oscuro: es lo que mas
+   peso visual tiene de toda la pagina, y es lo que se vende.
+   ------------------------------------------------------------------------- */
+
+.producto { padding: var(--e7) 0; }
+.producto .container { max-width: 1500px; }
+
+.hero-producto {
+  margin: 0;
+  position: relative;
+}
+.hero-producto img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--linea-fuerte);
+}
+/* La matriz de modulos del logo, cerrando el bloque. */
+.hero-producto::after {
+  content: "";
+  display: block;
+  height: 32px;
+  margin-top: var(--e3);
+  background: url(/assets/matriz.svg) repeat-x left bottom / auto 32px;
+  opacity: 0.5;
+}
+
+/* ---------- Cifras: lista medida, alineada por la derecha ---------- */
+
+.stats {
+  border-top: 1px solid var(--linea-fuerte);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.stat {
+  display: grid;
+  grid-template-columns: clamp(5.5rem, 11vw, 9rem) 1fr;
+  gap: clamp(var(--e4), 4vw, var(--e6));
+  align-items: baseline;
+  padding: var(--e4) 0;
+  border-bottom: 1px solid rgba(230, 237, 246, 0.14);
+}
+.stat .num {
+  font-family: Fraunces, Georgia, serif;
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--texto);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.stat .label { color: var(--apagado); max-width: 48ch; }
 
 /* ---------- Secciones ---------- */
-section { padding: 56px 0; }
-section.alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.section-title { font-size: clamp(1.5rem, 3vw, 2.1rem); margin: 0 0 8px; letter-spacing: -0.3px; }
-.section-sub { color: var(--muted); max-width: 44rem; margin: 0 0 36px; }
 
-/* ---------- Grids y tarjetas ---------- */
-.grid { display: grid; gap: 20px; }
+/* ---------- Secciones alternas a sangre ----------
+   El ritmo de bloques claros y marinos de pantalla casi completa es de donde
+   sale la mayor parte de la energia. Las claras no sobreescriben reglas:
+   redefinen los tokens en su ambito, y el resto del CSS se invierte solo.
+   ------------------------------------------------------------------------- */
+
+section { padding: var(--e8) 0; }
+
+section.claro {
+  --marino: var(--claro);
+  --marino-2: #FFFFFF;
+  --texto: var(--claro-texto);
+  --apagado: var(--claro-apagado);
+  --cian: var(--claro-cian);
+  --linea: var(--claro-linea);
+  --linea-fuerte: var(--claro-linea-fuerte);
+  --superficie: #FFFFFF;
+  background: var(--claro);
+  color: var(--texto);
+}
+section.cifras { padding-top: 0; padding-bottom: var(--e7); }
+
+.section-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  max-width: 20ch;
+}
+.section-title { margin-left: auto; margin-right: auto; text-align: center; }
+.section-sub {
+  color: var(--apagado);
+  font-size: 1.16rem;
+  line-height: 1.62;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: var(--e6);
+}
+
+/* ---------- Rejillas ---------- */
+
+.grid { display: grid; gap: var(--e6); }
 .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 
-.card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 26px;
-  transition: border-color 0.15s ease, transform 0.15s ease;
-}
-.card:hover { border-color: var(--accent-strong); transform: translateY(-2px); }
-.card h3 { margin: 0 0 10px; font-size: 1.12rem; }
-.card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
-.card .icon { font-size: 1.6rem; display: block; margin-bottom: 12px; }
-.card a.more { display: inline-block; margin-top: 14px; font-weight: 700; font-size: 0.9rem; }
+/* ---------- Las dos vías: superficies planas, sin degradado ni elevación ---------- */
 
-.card.feature { background: var(--surface-2); }
-
-/* Tarjeta destacada (los 2 caminos de la home) */
+/* Tarjetas como superficie, no como bloque de texto con una regla. El radio y
+   la separacion corta vienen de la referencia que fijo el cliente. */
 .path-card {
-  background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
-  border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 34px; display: flex; flex-direction: column; gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e4);
+  background: var(--superficie);
+  border-radius: var(--radio);
+  padding: var(--e6) var(--e5);
 }
-.path-card:hover { border-color: var(--accent-strong); }
-.path-card h3 { margin: 0; font-size: 1.45rem; }
-.path-card p { color: var(--muted); margin: 0; flex-grow: 1; }
-.path-card .btn { align-self: flex-start; margin-top: 8px; }
+.path-card h3 {
+  font-size: 1.35rem;
+  margin: 0;
+}
+.path-card p { color: var(--apagado); margin: 0; }
+.path-card .btn, .path-card .more { align-self: flex-start; margin-top: var(--e2); }
 
-/* ---------- Franja de métricas ---------- */
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: center; }
-.stat .num { font-size: 2rem; font-weight: 800; color: var(--accent); display: block; }
-.stat .label { color: var(--muted); font-size: 0.88rem; }
+.partner-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--e2);
+  font-size: 0.92rem;
+  color: var(--apagado);
+}
+.partner-inline img { width: 24px; height: 24px; }
 
-/* ---------- Listas de checks ---------- */
-.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.checklist li { padding-left: 30px; position: relative; color: var(--muted); }
+/* ---------- Las dos vias: no son equivalentes, no van al 50/50 ----------
+   La consultoria es un servicio; LabopackWMS es el producto y la pagina a la
+   que se quiere llevar. El reparto 5/7 y la superficie lo dicen sin texto.
+   ------------------------------------------------------------------------- */
+
+.vias .grid.cols-2 {
+  grid-template-columns: 5fr 7fr;
+  gap: var(--e3);
+  align-items: stretch;
+}
+
+/* ---------- Las tres razones: banda densa, no tres columnas de aire ---------- */
+
+.razones .grid.cols-3 { gap: var(--e3); }
+.razones .grid.cols-3 { gap: var(--e5); }
+.razones .card h3 { font-size: 1.35rem; }
+
+/* ---------- La cita: el segundo momento, no una linea mas ---------- */
+
+.cita .claim {
+  border-left: 0;
+  padding-left: 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+}
+.cita .claim .who {
+  display: block;
+  width: fit-content;
+  margin-top: var(--e5);
+  padding-top: var(--e3);
+  border-top: 3px solid var(--cian);
+}
+
+/* ---------- Tarjetas: sin caja, separadas por una regla ---------- */
+
+.card {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  padding: var(--e5);
+}
+.card :is(h2, h3) {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin: 0 0 var(--e2);
+}
+.card p { color: var(--apagado); font-size: 0.96rem; margin: 0; }
+.card .more { margin-top: var(--e3); }
+/* .card.feature no se distingue: en /wms/ lo son todas. El acento sube al grupo. */
+
+/* ---------- Listas de comprobación ---------- */
+
+.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--e3); }
+.checklist li {
+  padding-left: var(--e4);
+  position: relative;
+  color: var(--apagado);
+  max-width: var(--medida);
+}
 .checklist li::before {
-  content: "✓"; position: absolute; left: 0; top: 0;
-  color: var(--ok); font-weight: 800;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: var(--e2);
+  height: var(--e2);
+  background: var(--cian);
 }
-.checklist li strong { color: var(--text); }
+.checklist li strong { color: var(--texto); }
 
-/* ---------- Cita / claim ---------- */
+/* ---------- Cita ---------- */
+
 .claim {
-  border-left: 4px solid var(--accent);
-  background: var(--surface); border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 26px 30px; margin: 0;
-  font-size: 1.25rem; font-weight: 600; line-height: 1.5;
+  font-family: Fraunces, Georgia, serif;
+  margin: 0;
+  border-left: 3px solid var(--cian);
+  padding-left: var(--e5);
+  font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.38;
+  max-width: 34ch;
+  text-wrap: pretty;
 }
-.claim .who { display: block; margin-top: 10px; color: var(--muted); font-size: 0.9rem; font-weight: 400; }
-
-/* ---------- CTA final ---------- */
-.cta-final { text-align: center; padding: 72px 0; }
-.cta-final h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); margin: 0 0 14px; }
-.cta-final p { color: var(--muted); margin: 0 0 28px; }
-
-/* ---------- Tabla comparativa / specs ---------- */
-.spec-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-.spec-table th, .spec-table td { padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border); }
-.spec-table th { color: var(--accent); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-.spec-table td { color: var(--muted); }
-.spec-table td:first-child { color: var(--text); font-weight: 600; }
-.table-wrap { overflow-x: auto; }
-
-/* ---------- Flujo operativo (pipeline del almacén) ---------- */
-.flow { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center; margin: 0 0 10px; }
-.flow .step {
-  background: var(--surface-2); border: 1px solid var(--border);
-  border-radius: 999px; padding: 8px 18px; font-weight: 700; font-size: 0.9rem; color: var(--text);
+.claim .who {
+  display: block;
+  margin-top: var(--e4);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--apagado);
+  letter-spacing: 0;
 }
-.flow .arrow { color: var(--accent); font-weight: 800; }
 
-/* ---------- Grupos de módulos ---------- */
-.module-group { margin-top: 42px; }
-.module-group > h3 {
-  font-size: 1.1rem; margin: 0 0 4px; color: var(--accent);
-  text-transform: uppercase; letter-spacing: 1.2px; font-size: 0.9rem;
+/* ---------- Cierre ---------- */
+
+.cta-final { text-align: center; }
+.cta-final h2 {
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+  margin-left: auto;
+  margin-right: auto;
 }
-.module-group .mg-sub { color: var(--muted); margin: 0 0 18px; font-size: 0.98rem; max-width: 46rem; }
-
-/* ---------- Tabla comparativa ---------- */
-.compare-table col.col-us { background: rgba(56, 189, 248, 0.07); }
-.compare-table th:not(:first-child), .compare-table td:not(:first-child) { text-align: center; }
-.compare-table th.us { color: var(--text); }
-.compare-table td.yes { color: var(--ok); font-weight: 700; }
-.compare-table td.mid { color: var(--muted); }
-.compare-note { color: var(--muted); font-size: 0.82rem; margin: 14px 0 0; }
-
-/* ---------- Casos de éxito ---------- */
-.case p { margin: 0 0 10px; color: var(--muted); font-size: 0.98rem; }
-.case p:last-of-type { margin-bottom: 0; }
-.case p strong { color: var(--text); }
-.case .anon { display: block; color: var(--muted); font-size: 0.85rem; font-style: italic; margin-bottom: 12px; }
-.case .case-tag { color: var(--accent); font-weight: 700; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 14px; }
-
-/* ---------- Artículo / guía long-form ---------- */
-.article-hero { padding: 64px 0 8px; }
-.breadcrumb { color: var(--muted); font-size: 0.85rem; margin: 0 0 14px; }
-.breadcrumb a { color: var(--muted); }
-.breadcrumb a:hover { color: var(--accent); }
-.article-body { max-width: 760px; }
-.article-body h2 { font-size: clamp(1.4rem, 2.6vw, 1.7rem); margin: 44px 0 12px; letter-spacing: -0.2px; }
-.article-body h3 { font-size: 1.14rem; margin: 26px 0 8px; }
-.article-body p { margin: 0 0 16px; }
-.article-body ul { margin: 0 0 18px; padding-left: 22px; }
-.article-body li { margin-bottom: 8px; }
-.article-body strong { color: var(--text); }
-.article-body .article-cta {
-  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 26px 28px; margin: 36px 0 8px;
+.cta-final p {
+  color: var(--apagado);
+  margin: 0 auto var(--e5);
+  max-width: 52ch;
 }
-.article-body .article-cta h3 { margin-top: 0; }
-.article-body .note { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); padding-top: 16px; margin-top: 34px; }
 
-/* ---------- Partner tecnológico ---------- */
-.partner {
-  display: flex; align-items: center; gap: 24px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 24px 28px; max-width: 780px; margin: 0 auto;
-}
-.partner img.p-logo { width: 64px; height: 64px; flex-shrink: 0; }
-.partner .p-body { margin: 0; color: var(--muted); font-size: 0.98rem; }
-.partner .p-body strong { color: var(--text); }
-.partner .p-kicker {
-  color: var(--accent); font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1.5px; font-size: 0.72rem; display: block; margin-bottom: 6px;
-}
-@media (max-width: 860px) { .partner { flex-direction: column; text-align: center; } }
+/* ---------- Pie ---------- */
 
-/* Línea de partner en el footer */
-.footer-partner-row { margin: 2px 0 18px; }
-.footer-partner { display: inline-flex; align-items: center; gap: 8px; }
-.footer-partner a { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 600; }
-.footer-partner a:hover { color: var(--accent); }
+.site-footer {
+  background: var(--marino-2);
+  border-top: 1px solid var(--linea-fuerte);
+  padding: var(--e7) 0 var(--e5);
+  font-size: 0.94rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--e6);
+  margin-bottom: var(--e6);
+}
+.site-footer h4 {
+  font-size: 0.95rem;
+  margin: 0 0 var(--e3);
+}
+.site-footer p { color: var(--apagado); margin: 0; }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e2); }
+.site-footer li { color: var(--apagado); }
+.site-footer a { color: var(--apagado); text-decoration: none; }
+.site-footer a:hover { color: var(--cian); text-decoration: underline; }
+
+.footer-partner-row { margin: 0 0 var(--e4); }
+.footer-partner a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e2);
+}
 .footer-partner img { width: 20px; height: 20px; }
 
-/* Franja de partner en la home */
-.partner-inline { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
-.partner-inline img { width: 30px; height: 30px; }
+.footer-legal {
+  border-top: 1px solid var(--linea);
+  padding-top: var(--e4);
+  color: var(--apagado);
+  font-size: 0.88rem;
+}
 
-/* ---------- Contacto ---------- */
+/* ---------- Flujo del almacén: una secuencia de verdad, con su dirección ---------- */
+
+/* Los pasos NO son enlaces, asi que no pueden parecerlo: con recuadro y peso
+   700 eran indistinguibles de .btn.ghost, que esta a dos dedos en la misma
+   pantalla. Van como texto corrido, que ademas evita que las flechas queden
+   huerfanas al final de linea cuando la fila envuelve en movil. */
+.flow {
+  border-top: 1px solid var(--linea-fuerte);
+  border-bottom: 1px solid var(--linea-fuerte);
+  padding: var(--e3) 0;
+  margin: 0 0 var(--e6);
+  font-size: 1.02rem;
+  line-height: 1.9;
+  max-width: none;
+}
+.flow .step {
+  font-weight: 700;
+  color: var(--texto);
+  white-space: nowrap;
+}
+/* Son texto, asi que les aplica el 4.5 de AA: --linea-fuerte (3.30) no vale.
+   El marcado no deja espacio entre el paso y la flecha; se pone aqui. */
+.flow .arrow {
+  color: var(--apagado);
+  font-weight: 700;
+  margin: 0 var(--e2);
+}
+
+/* ---------- Grupos de módulos ---------- */
+
+.module-group { margin-top: var(--e7); }
+.module-group > h3 {
+  font-size: 1.35rem;
+  color: var(--texto);
+  border-top: 3px solid var(--cian);
+  padding-top: var(--e3);
+  margin: 0 0 var(--e2);
+}
+.module-group .mg-sub {
+  color: var(--apagado);
+  margin: 0 0 var(--e5);
+  max-width: var(--medida);
+}
+
+/* ---------- Tablas de especificaciones y comparativa ---------- */
+
+.table-wrap { overflow-x: auto; }
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.spec-table th,
+.spec-table td {
+  padding: var(--e3) var(--e3);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--linea);
+}
+.spec-table th {
+  color: var(--texto);
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-bottom: 2px solid var(--texto);
+}
+.spec-table td { color: var(--apagado); }
+.spec-table td:first-child { color: var(--texto); font-weight: 600; }
+
+/* La columna propia se destaca con superficie, no con un segundo color. */
+.compare-table col.col-us { background: var(--marino-2); }
+.compare-table th.us { border-bottom-color: var(--cian); }
+.compare-table td.yes { color: var(--texto); font-weight: 700; }
+.compare-table td.mid { color: var(--apagado); }
+.compare-note { color: var(--apagado); font-size: 0.85rem; margin: var(--e3) 0 0; }
+
+/* ---------- Partner tecnológico ---------- */
+
+.partner {
+  display: flex;
+  align-items: center;
+  gap: var(--e5);
+  border: 1px solid var(--linea-fuerte);
+  padding: var(--e4) var(--e5);
+  max-width: 780px;
+}
+.partner img.p-logo { width: 56px; height: 56px; flex-shrink: 0; }
+.partner .p-body { margin: 0; color: var(--apagado); max-width: none; }
+.partner .p-body strong { color: var(--texto); }
+.partner .p-rotulo {
+  display: block;
+  margin-bottom: var(--e1);
+  color: var(--cian);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.columna-legal { max-width: 72ch; }
+
+/* ---------- Capturas de LabopackWMS ----------
+   Único material gráfico de la web. Sin sombra, sin redondeo y sin mockup: un
+   borde de 1px las separa del fondo y nada más.
+   ------------------------------------------------------------------------- */
+
+.captura {
+  margin: 0 0 var(--e6);
+  max-width: 760px;
+}
+.captura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--linea-fuerte);
+}
+.captura.movil { max-width: 320px; }
+.captura figcaption {
+  margin-top: var(--e2);
+  color: var(--apagado);
+  font-size: 0.88rem;
+  max-width: var(--medida);
+}
+
+/* ---------- Páginas de artículo (la guía de EDI) ---------- */
+
+.article-hero { padding-bottom: var(--e5); }
+.article-hero h1 {
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  max-width: 24ch;
+}
+
+.breadcrumb {
+  color: var(--apagado);
+  font-size: 0.95rem;
+  margin: 0 0 var(--e4);
+  max-width: none;
+}
+.breadcrumb a { color: var(--apagado); }
+.breadcrumb a:hover { color: var(--cian); }
+
+.article-body { max-width: var(--medida); }
+.article-body > h2 {
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  letter-spacing: -0.02em;
+  border-top: 1px solid var(--linea-fuerte);
+  padding-top: var(--e3);
+  margin: var(--e6) 0 var(--e3);
+}
+.article-body > h2:first-child { margin-top: 0; }
+.article-body h3 { margin: var(--e5) 0 var(--e2); }
+.article-body p { color: var(--apagado); }
+.article-body ul, .article-body ol {
+  color: var(--apagado);
+  margin: 0 0 var(--e4);
+  padding-left: var(--e4);
+  max-width: var(--medida);
+}
+.article-body li { margin-bottom: var(--e2); }
+.article-body .spec-table { margin-bottom: var(--e4); }
+
+.article-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--e4);
+  flex-wrap: wrap;
+  margin: var(--e6) 0 var(--e5);
+}
+
+.note {
+  color: var(--apagado);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--linea);
+  padding-top: var(--e3);
+  max-width: var(--medida);
+}
+
+/* ---------- Casos ---------- */
+
+/* A dos columnas: el titular y el descriptor anonimizado a la izquierda, el
+   relato a la derecha. Antes la regla roja cruzaba los 1180px sobre una
+   columna de texto de 66 caracteres, y la mitad derecha quedaba vacía. */
+.case {
+  border-top: 3px solid var(--cian);
+  padding-top: var(--e4);
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  /* La primera fila mide lo que el titular; si no, el cuerpo reparte su altura
+     entre las dos y el descriptor se descuelga hasta la mitad del caso. */
+  grid-template-rows: auto 1fr;
+  column-gap: var(--e6);
+  align-items: start;
+}
+.case :is(h2, h3) { grid-column: 1; grid-row: 1; }
+.case .anon { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+.case .case-body { grid-column: 2; grid-row: 1 / span 2; }
+.case :is(h2, h3) {
+  font-size: 1.35rem;
+  margin: 0 0 var(--e2);
+}
+.anon {
+  display: block;
+  color: var(--apagado);
+  font-size: 0.95rem;
+  margin-bottom: var(--e4);
+}
+/* .card p deja los parrafos a margen cero; en un caso son tres seguidos. */
+.case p {
+  font-size: 1rem;
+  margin-bottom: var(--e3);
+  max-width: var(--medida);
+}
+.case p:last-child { margin-bottom: 0; }
+.case-tag {
+  color: var(--apagado);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--linea);
+  padding-top: var(--e3);
+  margin-top: var(--e4);
+}
+
+/* ---------- Datos de contacto ---------- */
+
 .contact-block {
-  display: flex; flex-direction: column; gap: 18px; align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--e5);
 }
 .contact-item {
-  display: flex; align-items: center; gap: 14px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 20px 26px; width: 100%; max-width: 520px;
-  font-size: 1.05rem;
+  border-top: 1px solid var(--linea-fuerte);
+  padding-top: var(--e3);
 }
-.contact-item .ci-icon { font-size: 1.5rem; }
-.contact-item a { font-weight: 700; }
-
-/* ---------- Footer ---------- */
-.site-footer {
-  border-top: 1px solid var(--border); background: var(--surface);
-  padding: 44px 0 30px; margin-top: 40px;
-  color: var(--muted); font-size: 0.9rem;
+.contact-item strong {
+  display: block;
+  margin-bottom: var(--e2);
 }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; margin-bottom: 26px; }
-.site-footer h4 { color: var(--text); margin: 0 0 12px; font-size: 0.95rem; }
-.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.site-footer a { color: var(--muted); }
-.site-footer a:hover { color: var(--accent); }
-.footer-legal { border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.82rem; }
+.contact-item a, .contact-item div { color: var(--apagado); }
+.contact-item a { color: var(--cian); }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 860px) {
-  .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr; }
-  .hero { padding: 56px 0 44px; }
+/* ---------- Movimiento ----------
+   Un solo momento por sitio, y solo donde dice algo: los seis pasos del ciclo
+   del almacén se descubren en orden al desplazarse, que es lo que describen.
+   En una línea de tiempo de scroll no existe animation-delay, así que el
+   escalonado se reparte con animation-range.
+   ------------------------------------------------------------------------- */
 
-  .nav-toggle-label { display: flex; }
-  .nav-links {
-    display: none; position: absolute; top: 64px; left: 0; right: 0;
-    flex-direction: column; align-items: stretch; gap: 0;
-    background: var(--bg); border-bottom: 1px solid var(--border);
-    padding: 10px 22px 20px;
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .more, .nav-links a, .card, .flow .step {
+    transition: color 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
   }
-  .nav-links li { padding: 10px 0; }
+
+  @supports (animation-timeline: view()) {
+    .flow .step {
+      animation: aparecer both;
+      animation-timeline: view();
+    }
+    .flow .step:nth-child(1)  { animation-range: entry 5%  entry 35%; }
+    .flow .step:nth-child(3)  { animation-range: entry 10% entry 40%; }
+    .flow .step:nth-child(5)  { animation-range: entry 15% entry 45%; }
+    .flow .step:nth-child(7)  { animation-range: entry 20% entry 50%; }
+    .flow .step:nth-child(9)  { animation-range: entry 25% entry 55%; }
+    .flow .step:nth-child(11) { animation-range: entry 30% entry 60%; }
+    .flow .arrow {
+      animation: atenuar both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 60%;
+    }
+  }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes atenuar {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Sin soporte para líneas de tiempo de scroll, el contenido se ve completo
+   y estático: no hay estado inicial oculto que dependa de la animación. */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Adaptación ---------- */
+
+@media (max-width: 980px) {
+  .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 820px) {
+  .container { padding: 0 var(--e4); }
+
+  /* En movil la captura de escritorio seria ilegible: el <picture> sirve
+     la de Android, que es la que corresponde a ese visitante. */
+  .hero-producto { margin-top: var(--e6); }
+  .hero-producto img { max-width: 260px; margin: 0 auto; }
+
+  .partner { flex-direction: column; align-items: flex-start; gap: var(--e3); }
+  .contact-block { grid-template-columns: 1fr; gap: var(--e4); }
+  .case { grid-template-columns: 1fr; }
+  .case :is(h2, h3), .case .anon, .case .case-body { grid-column: 1; grid-row: auto; }
+  .case .anon { margin-bottom: var(--e4); }
+
+  .hero { padding: var(--e7) 0 var(--e6); }
+  .hero h1 { max-width: none; }
+
+  section { padding: var(--e6) 0; }
+
+  /* La especificidad no sube por estar dentro de un @media: hay que igualar
+     o superar la del selector que se quiere pisar. */
+  .grid.cols-2, .grid.cols-3,
+  .vias .grid.cols-2 { grid-template-columns: 1fr; }
+  .vias .grid.cols-2 { gap: var(--e5); }
+  .vias .path-card:last-child { padding: var(--e4); }
+  .grid { gap: var(--e5); }
+  .footer-grid { grid-template-columns: 1fr; gap: var(--e5); }
+
+  .stat { padding: var(--e3) 0; }
+
+  /* Menú desplegable gobernado por la casilla. */
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    width: 1px; height: 1px;
+    opacity: 0;
+    margin: 0;
+  }
+  .nav-toggle-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+  .nav-toggle-label span {
+    display: block;
+    height: 2px;
+    background: var(--texto);
+  }
+  .nav-toggle:focus-visible + .nav-toggle-label {
+    outline: 3px solid var(--cian);
+    outline-offset: 2px;
+  }
+
+  .site-header .nav { flex-wrap: wrap; gap: var(--e3); }
+
+  .nav-links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    border-top: 1px solid var(--linea-fuerte);
+    margin-bottom: var(--e3);
+  }
   .nav-toggle:checked ~ .nav-links { display: flex; }
+  .nav-links li { border-bottom: 1px solid var(--linea-fuerte); }
+  .nav-links a {
+    display: block;
+    padding: var(--e3) 0;
+    font-size: 1rem;
+    border-bottom: 0;
+  }
+  .nav-links a[aria-current] { color: var(--cian); }
+  .nav-links a.btn { margin: var(--e3) 0; text-align: center; }
 }

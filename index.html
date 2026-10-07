@@ -7,6 +7,8 @@
   <meta name="description" content="Consultoría logística, migraciones ERP e IA aplicada + LabopackWMS: software de gestión de almacenes (WMS/SGA) con EDI, picking por escáner y modo offline. 35 años resolviendo operativa real.">
   <link rel="canonical" href="https://labopack.com/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preload" href="/assets/fonts/instrumentsans-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Labopack">
@@ -50,9 +52,9 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo.svg" alt="Labopack" width="169" height="34"></a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
-    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
+    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo-icono.svg" alt="" width="29" height="34" aria-hidden="true"><span class="brand-nombre">Labopack</span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Abrir menú">
+    <label for="nav-toggle" class="nav-toggle-label">
       <span></span><span></span><span></span>
     </label>
     <ul class="nav-links">
@@ -70,8 +72,7 @@
 
   <div class="hero">
     <div class="container">
-      <p class="kicker">Logística · Software · IA aplicada</p>
-      <h1>Logística que funciona.<br><span class="hl">Software que lo demuestra.</span></h1>
+      <h1>Logística que funciona. Software que lo demuestra.</h1>
       <p class="lead">
         35 años resolviendo problemas de almacenes, sistemas y datos — y un WMS propio
         cuyo origen se remonta a 2005 y que hoy, reescrito, gestiona cada día la operativa
@@ -84,34 +85,48 @@
     </div>
   </div>
 
-  <section class="alt">
+  <section class="producto claro">
     <div class="container">
-      <div class="stats">
-        <div class="stat"><span class="num">+35</span><span class="label">años resolviendo problemas con tecnología</span></div>
-        <div class="stat"><span class="num">2005</span><span class="label">gestionando nuestro almacén con software propio desde</span></div>
-        <div class="stat"><span class="num">845</span><span class="label">errores críticos detectados en la última auditoría de datos</span></div>
-        <div class="stat"><span class="num">7</span><span class="label">sectores: farma, logística, telecom, aviación…</span></div>
-      </div>
+      <figure class="hero-producto">
+        <picture>
+          <source media="(max-width: 820px)" srcset="/assets/capturas/wms-android.webp"
+                  width="372" height="846">
+          <img src="/assets/capturas/wms-edi-940.webp"
+               alt="LabopackWMS: importación de pedidos EDI en el puesto de gestión de Windows y operativa de almacén en la aplicación Android."
+               width="1520" height="499" decoding="async">
+        </picture>
+      </figure>
     </div>
   </section>
 
-  <section>
+  <section class="cifras">
+    <div class="container">
+      <ul class="stats">
+        <li class="stat"><span class="num">+35</span><span class="label">años resolviendo problemas con tecnología</span></li>
+        <li class="stat"><span class="num">2005</span><span class="label">gestionando nuestro almacén con software propio desde</span></li>
+        <li class="stat"><span class="num">845</span><span class="label">errores críticos detectados en la última auditoría de datos</span></li>
+        <li class="stat"><span class="num">7</span><span class="label">sectores: farma, logística, telecom, aviación…</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="vias claro">
     <div class="container">
       <h2 class="section-title">Dos formas de ayudarte</h2>
       <p class="section-sub">Según lo que necesite tu operativa: experiencia externa para resolver un problema concreto, o un sistema completo para gestionar tu almacén.</p>
       <div class="grid cols-2">
         <div class="path-card">
-          <h3>🧭 Consultoría logística y tecnológica</h3>
+          <h3>Consultoría logística y tecnológica</h3>
           <p>
             Migraciones ERP que se atascan, almacenes que no rinden, datos que no cuadran
             entre sistemas, inspecciones sanitarias a la vista. Consultoría de alto nivel
             en logística, arquitectura de soluciones, auditoría de datos, IA aplicada y
             regulatorio farmacéutico (GDP/BPD).
           </p>
-          <a class="btn ghost" href="/consultoria/">Ver servicios →</a>
+          <a class="btn ghost" href="/consultoria/">Ver servicios</a>
         </div>
         <div class="path-card">
-          <h3>📦 LabopackWMS — software de gestión de almacenes</h3>
+          <h3>LabopackWMS — software de gestión de almacenes</h3>
           <p>
             Software de gestión de almacenes (WMS/SGA) completo para operadores logísticos y almacenes exigentes:
             picking con escáner desde Android, intercambio EDI con tus clientes, control
@@ -120,29 +135,26 @@
           </p>
           <p>Versiones por sector: <a href="/wms/3pl/">software de gestión de almacenes para operadores logísticos 3PL</a> · <a href="/wms/farma/">software de gestión de almacén farmacéutico</a>.</p>
           <p class="partner-inline"><img src="/assets/ecaweb-logo.png" alt="Ecaweb" width="30" height="30"> Con el respaldo técnico de <a href="https://www.ecaweb.es" rel="noopener">Ecaweb</a></p>
-          <a class="btn" href="/wms/">Conocer el producto →</a>
+          <a class="btn" href="/wms/">Conocer el producto</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="alt">
+  <section class="razones">
     <div class="container">
       <h2 class="section-title">Por qué Labopack</h2>
       <p class="section-sub">La mayoría de las consultoras te asesoran. Nosotros, además, operamos.</p>
       <div class="grid cols-3">
         <div class="card">
-          <span class="icon">🏭</span>
           <h3>Operativa real, no teoría</h3>
           <p>Gestionamos nuestro propio almacén en Madrid desde 2004. Cada recomendación ha sido probada antes en carne propia: la nuestra.</p>
         </div>
         <div class="card">
-          <span class="icon">💊</span>
           <h3>Exigencia farmacéutica</h3>
           <p>Trabajamos bajo GDP/BPD y preparamos almacenes para inspecciones sanitarias y auditorías logísticas de la AEMPS, el Ministerio de Sanidad y las Big Four. Si funciona para farma, funciona para tu sector.</p>
         </div>
         <div class="card">
-          <span class="icon">🤖</span>
           <h3>IA aplicada a resultados</h3>
           <p>Automatizamos auditorías de datos, desarrollo y reporting con inteligencia artificial. Lo que llevaba semanas ahora se resuelve en días — con más precisión.</p>
         </div>
@@ -150,7 +162,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="cita claro">
     <div class="container">
       <blockquote class="claim">
         “Hay dos tipos de profesionales tecnológicos: los que saben programar y los que
@@ -160,11 +172,11 @@
     </div>
   </section>
 
-  <section class="cta-final alt">
+  <section class="cta-final">
     <div class="container">
       <h2>¿Tienes un reto logístico o tecnológico?</h2>
       <p>Cuéntanoslo. Sin compromiso, sin PowerPoint — soluciones que funcionan el lunes.</p>
-      <a class="btn" href="/contacto/">Hablemos →</a>
+      <a class="btn" href="/contacto/">Hablemos</a>
     </div>
   </section>
 
@@ -174,12 +186,12 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <h4>Labopack, S.L.</h4>
+        <h3>Labopack, S.L.</h3>
         <p>Consultoría logística y tecnológica y software de gestión de almacén.
         Empresa de packaging y logística en Madrid desde 2004.</p>
       </div>
       <div>
-        <h4>Navegación</h4>
+        <h3>Navegación</h3>
         <ul>
           <li><a href="/consultoria/">Consultoría</a></li>
           <li><a href="/wms/">LabopackWMS</a></li>
@@ -191,7 +203,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contacto</h4>
+        <h3>Contacto</h3>
         <ul>
           <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#108;&#97;&#98;&#111;&#112;&#97;&#99;&#107;&#46;&#99;&#111;&#109;</a></li>
           <li><a href="https://www.linkedin.com/in/luiscardiel" rel="noopener">LinkedIn</a></li>
