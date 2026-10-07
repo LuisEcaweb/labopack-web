@@ -37,6 +37,22 @@ saldría la energía visual que el azul ya aporta.**
 - **El celeste marca y dirige.** No decora, no hace degradados, no rellena fondos grandes.
 - **La fuerza va en un solo sitio.** Lo que no es el titular o el producto, calla.
 
+## Ritmo de secciones
+
+La página alterna **bloques marinos y claros a sangre**, de pantalla casi completa. Ahí
+está la mayor parte de la energía visual, y sale de la referencia que fijó el cliente
+(apple.com): bloques enteros alternos, un titular grande y centrado por bloque, y una
+pieza visual por bloque.
+
+Las secciones claras **no sobreescriben reglas**: redefinen los tokens de color en su
+propio ámbito con `section.claro { --marino: var(--claro); … }`, y todo el CSS se
+invierte solo. Es lo que evita la pelea de especificidad que en este proyecto ya ha
+costado dos fallos (el botón de la cabecera a 1.05 de contraste y la rejilla que se
+salía 110 px en móvil).
+
+El acento sobre claro **no puede ser `--cian`**: `#38BDF8` sobre `#F2F5F9` da 1.96. En
+las secciones claras el token pasa a `#0B74A8` (4.71), que es el mismo tono oscurecido.
+
 ## Paleta
 
 ```css
@@ -70,6 +86,15 @@ recolorear: fue dibujado exactamente para este fondo.
 **`--linea` no puede delimitar un control.** A 1.45 solo vale para separar filas o
 bloques cuando el espaciado ya transmite la separación. Campos, botones fantasma y
 cualquier elemento interactivo usan `--linea-fuerte`.
+
+## Tarjetas
+
+Las tarjetas son **superficie, no un bloque de texto con una regla encima**: fondo
+`var(--superficie)`, radio `var(--radio)` y separación corta entre ellas (`--e3`). En las
+secciones marinas la superficie es `#16213A`; en las claras, blanco.
+
+Sin sombra y sin elevación al pasar el ratón — eso sigue prohibido (ver 8 y 9). Lo que
+las separa del fondo es la superficie, no un efecto.
 
 ## Tipografía
 
@@ -220,8 +245,10 @@ finales; la fase 5 lo hace.
 8. **Ninguna tarjeta que se eleve al pasar el ratón.** Nada de `transform:translateY()`
    en `:hover`. El hover y el foco se marcan con color o con borde.
 9. **Ninguna sombra gris difusa** del tipo `box-shadow: 0 Npx rgba(0,0,0,.1)`.
-10. **Ningún radio de esquina uniforme aplicado a todo.** El radio por defecto es **0**.
-    Si un elemento concreto lo necesita, se justifica en su regla.
+10. **El radio no se aplica a todo.** Solo lo llevan las tarjetas (`var(--radio)`,
+    18px) y los botones, que son pastillas (`999px`). Imágenes, tablas, campos y
+    cualquier otra superficie van a **0**. El radio de las tarjetas viene de la
+    referencia que fijó el cliente (apple.com), no de un valor por defecto.
 11. **Ningún marcador numerado 01 / 02 / 03** salvo que el contenido sea de verdad una
     secuencia (un proceso por pasos o una cronología).
 12. **Ninguna cadena de metadatos unida por puntos medios** (`A · B · C`) **añadida por
