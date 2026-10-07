@@ -1,5 +1,29 @@
 # Brief labopack-web: diseño sin aspecto de IA
 
+> **Nota de cierre — 7 de octubre de 2026.** Este documento se conserva tal como se
+> escribió, porque es el encargo. Pero **tres de sus premisas no sobrevivieron al
+> trabajo**, y la fuente de verdad del diseño es
+> [`.claude/skills/labopack-design/SKILL.md`](../.claude/skills/labopack-design/SKILL.md).
+>
+> 1. **«Sustituir el azul marino con acento celeste».** Era un error de diagnóstico. El
+>    azul no era un rasgo de plantilla: era el activo de color que funcionaba, y es lo
+>    coherente con la interfaz de LabopackWMS, que es turquesa. Se probaron dos
+>    direcciones derivadas del logo —«Muelle» y «Turno de noche»— y las dos salieron más
+>    apagadas que lo que sustituían. El azul se queda; lo que se quitó fueron los
+>    detalles: emojis, degradados, elevación al hover, antetítulos en mayúsculas,
+>    desenfoque y Segoe UI.
+> 2. **«Ninguna fotografía».** Se mantiene, pero tuvo un coste que no se advirtió a
+>    tiempo: una web B2B sin imagen en portada parece floja por bien compuesta que esté.
+>    Lo resolvieron las capturas de LabopackWMS, que pasaron a ser la pieza central.
+> 3. **Las cifras de fechas no eran una inconsistencia.** 1991 es la constitución de la
+>    sociedad, 2004 el almacén, 2005 el WMS y 2024 la reescritura: cuatro hechos
+>    distintos. No se tocó ningún texto.
+>
+> La dirección final toma su ritmo de bloques alternos y sus tarjetas de **apple.com**,
+> que el cliente fijó como referencia. No se copió nada suyo: ni diseño, ni imágenes, ni
+> el menú — las razones están en el apartado «Cabecera» de la skill.
+
+
 Oct 7, 2026 · @Luis
 
 Brief para Claude Code en el repo `LuisEcaweb/labopack-web` (rama `master`, publicado en labopack.com). Encarga un rediseño visual con identidad propia en cinco fases, con una parada para tu aprobación después de la home.
