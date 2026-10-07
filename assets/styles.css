@@ -504,32 +504,27 @@ section.cifras { padding-top: 0; }
 
 .columna-legal { max-width: 72ch; }
 
-/* ---------- Huecos de captura pendiente ----------
-   Provisional. Marcan dónde va cada captura de LabopackWMS y a qué proporción,
-   para que la maquetación quede cerrada y meter la imagen sea sustituir el
-   <figure> por un <img>. No deben llegar a producción con texto dentro.
+/* ---------- Capturas de LabopackWMS ----------
+   Único material gráfico de la web. Sin sombra, sin redondeo y sin mockup: un
+   borde de 1px las separa del fondo y nada más.
    ------------------------------------------------------------------------- */
 
-.hueco {
-  margin: 0 0 var(--e5);
+.captura {
+  margin: 0 0 var(--e6);
   max-width: 760px;
 }
-.hueco .marco {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.captura img {
+  display: block;
+  width: 100%;
+  height: auto;
   border: 1px solid var(--linea-fuerte);
-  color: var(--grafito);
-  font-size: 0.9rem;
-  text-align: center;
-  padding: var(--e4);
 }
-.hueco.windows .marco { aspect-ratio: 16 / 10; }
-.hueco.android .marco { aspect-ratio: 9 / 16; max-width: 300px; margin: 0 auto; }
-.hueco figcaption {
+.captura.movil { max-width: 320px; }
+.captura figcaption {
   margin-top: var(--e2);
   color: var(--grafito);
   font-size: 0.88rem;
+  max-width: var(--medida);
 }
 
 /* ---------- Páginas de artículo (la guía de EDI) ---------- */

@@ -161,15 +161,28 @@ Son el único activo visual, y solo tienen sitio donde ilustran producto: `/wms/
   entera reducida hasta ser ilegible no sirve de nada.
 - Sin mockups de portátil ni de móvil con reflejos. El marco, si hace falta, es un borde
   de 1px en `--linea-fuerte`.
-- Proporción: **16:10** las de Windows, **9:16** las de Android. `loading="lazy"` y
-  `width`/`height` explícitos salvo en la primera visible de la página.
-- **Mientras no lleguen**, el hueco se marca con un `<figure class="hueco">`: recuadro de
-  1px en `--linea-fuerte` a su proporción y una línea en `--grafito` diciendo qué captura
-  va ahí. Ni relleno gris, ni degradado, ni sustituto de ningún tipo.
-- Los huecos son **andamio provisional y no pueden fusionarse a `master`**: llevan texto
-  visible («Captura pendiente») que el sitio publicado no debe mostrar. O se sustituyen
-  por la captura, o se retiran antes de fusionar. Hoy hay cuatro: dos en `/wms/` y uno en
-  cada una de `/wms/3pl/` y `/wms/farma/`.
+- Van en `<figure class="captura">` con su `<figcaption>`. La variante `.movil` para las
+  de Android. `loading="lazy"`, `decoding="async"` y `width`/`height` explícitos siempre.
+- Formato **WebP**, calidad 86, a **1520 px de ancho**: el doble del ancho máximo de
+  presentación (760 px), que es lo que pide una pantalla de alta densidad. Más allá de
+  eso solo se gastan kilobytes. Las de móvil van a su tamaño nativo.
+- Hoy hay cuatro, en `assets/capturas/`: dos en `/wms/`, una en `/wms/3pl/` y una en
+  `/wms/farma/`.
+
+### Saneado obligatorio antes de publicar una captura
+
+El repositorio es público y lo publicado no se puede retirar. **Ninguna captura se sube
+sin pasar por esto.**
+
+- Fuera **todo** nombre de cliente, depositante, transportista, marca de producto y
+  logotipo ajeno. Repasar columnas, barras de título, pies de página y ventanas de fondo:
+  en la primera tanda había nombres en siete sitios distintos de la misma pantalla.
+- **No se difumina: se tapa y se reescribe** con un dato inventado, en la misma fuente y
+  al mismo tamaño. Un difuminado se ve y delata que había algo debajo.
+- Los códigos internos (SKU, lote, número de orden) pueden quedarse: no identifican a
+  nadie fuera de la empresa.
+- Fuera el cromo de la ventana, la barra flotante de captura y el puntero del ratón.
+- Cada `figcaption` termina en **«Datos de demostración.»**, porque lo son.
 
 ### Iconos
 
