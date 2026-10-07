@@ -134,25 +134,38 @@ Escala de espaciado en múltiplos de 4, con saltos deliberados. Nada de valores 
 
 ## Imagen
 
-### Fotografía
+### No hay fotografía
 
-- Proporción **3:2** en horizontal, **4:5** en vertical. Nada de 16:9 ni de círculos.
-- Recorte: la acción ocupa el encuadre. Nada de plano general del almacén vacío.
-- Tratamiento: color natural, sin filtro, sin duotono, sin superposición de teja.
-  Si hace falta texto encima, va fuera de la foto, no sobre ella.
-- Sin `border-radius`, sin sombra, sin marco.
-- `loading="lazy"` y `width`/`height` explícitos en todas salvo la primera visible.
-- **Mientras no haya material real**, el hueco se marca con un recuadro de
-  `--linea-fuerte` a la proporción que le toque y una línea en `--grafito` diciendo qué
-  foto va ahí. Ni stock, ni imagen generada, ni degradado de relleno.
+**Decisión tomada el 7 de octubre de 2026: la web no lleva fotografía.** El único
+material gráfico son capturas de LabopackWMS. Ni fotos del almacén, ni retratos, ni
+stock, ni imágenes generadas.
+
+Eso tiene una consecuencia de diseño que manda sobre todo este apartado: **las páginas
+que no pueden enseñar producto no se apoyan en imagen.** La home, `/casos/`,
+`/sectores/`, `/consultoria/` y `/contacto/` sostienen su jerarquía con tipografía,
+espacio y composición. Si un bloque de esas páginas «necesita una imagen», es que está
+mal compuesto; se recompone, no se rellena.
+
+Si en el futuro llega fotografía propia, se revisa este apartado: proporción 3:2 en
+horizontal y 4:5 en vertical, color natural, sin filtro, sin marco y sin redondeo.
+Fotos de stock e imágenes generadas quedan prohibidas en cualquier caso (ver
+Prohibiciones 17).
 
 ### Capturas de LabopackWMS
+
+Son el único activo visual, y solo tienen sitio donde ilustran producto: `/wms/`,
+`/wms/3pl/`, `/wms/farma/` y, si aporta, `/consultoria/`.
 
 - Del entorno de pruebas, nunca de producción, y sin un solo dato de cliente a la vista.
 - Se muestran a tamaño legible o recortadas a la zona que ilustra el texto. Una captura
   entera reducida hasta ser ilegible no sirve de nada.
 - Sin mockups de portátil ni de móvil con reflejos. El marco, si hace falta, es un borde
   de 1px en `--linea-fuerte`.
+- Proporción: **16:10** las de Windows, **9:16** las de Android. `loading="lazy"` y
+  `width`/`height` explícitos salvo en la primera visible de la página.
+- **Mientras no lleguen**, el hueco se marca con un recuadro de 1px en
+  `--linea-fuerte` a su proporción y una línea en `--grafito` diciendo qué captura va
+  ahí. Ni relleno gris, ni degradado, ni sustituto de ningún tipo.
 
 ### Iconos
 
