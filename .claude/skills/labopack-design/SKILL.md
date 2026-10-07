@@ -163,9 +163,13 @@ Son el único activo visual, y solo tienen sitio donde ilustran producto: `/wms/
   de 1px en `--linea-fuerte`.
 - Proporción: **16:10** las de Windows, **9:16** las de Android. `loading="lazy"` y
   `width`/`height` explícitos salvo en la primera visible de la página.
-- **Mientras no lleguen**, el hueco se marca con un recuadro de 1px en
-  `--linea-fuerte` a su proporción y una línea en `--grafito` diciendo qué captura va
-  ahí. Ni relleno gris, ni degradado, ni sustituto de ningún tipo.
+- **Mientras no lleguen**, el hueco se marca con un `<figure class="hueco">`: recuadro de
+  1px en `--linea-fuerte` a su proporción y una línea en `--grafito` diciendo qué captura
+  va ahí. Ni relleno gris, ni degradado, ni sustituto de ningún tipo.
+- Los huecos son **andamio provisional y no pueden fusionarse a `master`**: llevan texto
+  visible («Captura pendiente») que el sitio publicado no debe mostrar. O se sustituyen
+  por la captura, o se retiran antes de fusionar. Hoy hay cuatro: dos en `/wms/` y uno en
+  cada una de `/wms/3pl/` y `/wms/farma/`.
 
 ### Iconos
 
@@ -221,10 +225,13 @@ finales; la fase 5 lo hace.
     Si un elemento concreto lo necesita, se justifica en su regla.
 11. **Ningún marcador numerado 01 / 02 / 03** salvo que el contenido sea de verdad una
     secuencia (un proceso por pasos o una cronología).
-12. **Ninguna cadena de metadatos unida por puntos medios** (`A · B · C`) añadida por el
-    diseño como adorno. Los puntos medios que ya están en el texto original se respetan:
-    el texto no se toca. Hoy quedan dos, ambos en `index.html`, separando dos enlaces y
-    el aviso legal del pie.
+12. **Ninguna cadena de metadatos unida por puntos medios** (`A · B · C`) **añadida por
+    el diseño** como adorno. Los que ya están en el texto original se respetan, porque el
+    texto no se toca: hay unos cuarenta repartidos por las 10 páginas (las etiquetas de
+    `/casos/`, la numeración de los grupos de módulos de `/wms/`, el aviso del pie en las
+    diez, los `›` de las migas de `/guias/`…). **Todos vienen de `master`.** La
+    comprobación válida es comparar contra `master`, no contar apariciones: si el total
+    no sube, el diseño no ha añadido ninguno.
 13. **Ninguna tipografía monoespaciada** para rótulos pequeños o datos.
 14. **Ningún fondo crema** (`#F4F1EA` y vecinos) como base de página. El fondo es
     `--hormigon`.

@@ -112,7 +112,6 @@ img { max-width: 100%; height: auto; }
   font-size: 1.55rem;
   font-weight: 800;
   font-variation-settings: "wdth" 118;
-  letter-spacing: -0.015em;
   line-height: 1;
 }
 
@@ -175,6 +174,7 @@ img { max-width: 100%; height: auto; }
 }
 .more:hover { color: var(--teja); }
 
+.cta-row.centrada { justify-content: center; }
 .cta-row {
   display: flex;
   align-items: center;
@@ -245,7 +245,9 @@ section.cifras { padding-top: 0; }
 }
 .section-sub {
   color: var(--grafito);
-  font-size: 1.08rem;
+  font-size: 1.16rem;
+  line-height: 1.62;
+  max-width: 60ch;
   margin-bottom: var(--e6);
 }
 
@@ -266,9 +268,8 @@ section.cifras { padding-top: 0; }
   padding-top: var(--e4);
 }
 .path-card h3 {
-  font-size: 1.45rem;
-  font-variation-settings: "wdth" 106;
-  letter-spacing: -0.015em;
+  font-size: 1.35rem;
+  font-variation-settings: "wdth" 104;
   margin: 0;
 }
 .path-card p { color: var(--grafito); margin: 0; }
@@ -290,7 +291,7 @@ section.cifras { padding-top: 0; }
   padding-top: var(--e3);
   background: transparent;
 }
-.card h3 {
+.card :is(h2, h3) {
   font-size: 1.25rem;
   font-variation-settings: "wdth" 104;
   line-height: 1.25;
@@ -329,7 +330,6 @@ section.cifras { padding-top: 0; }
   font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   font-weight: 500;
   line-height: 1.38;
-  letter-spacing: -0.01em;
   max-width: 34ch;
   text-wrap: pretty;
 }
@@ -404,31 +404,39 @@ section.cifras { padding-top: 0; }
 
 /* ---------- Flujo del almacén: una secuencia de verdad, con su dirección ---------- */
 
+/* Los pasos NO son enlaces, asi que no pueden parecerlo: con recuadro y peso
+   700 eran indistinguibles de .btn.ghost, que esta a dos dedos en la misma
+   pantalla. Van como texto corrido, que ademas evita que las flechas queden
+   huerfanas al final de linea cuando la fila envuelve en movil. */
 .flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--e2);
+  border-top: 1px solid var(--linea-fuerte);
+  border-bottom: 1px solid var(--linea-fuerte);
+  padding: var(--e3) 0;
   margin: 0 0 var(--e6);
+  font-size: 1.02rem;
+  line-height: 1.9;
+  max-width: none;
 }
 .flow .step {
-  border: 1px solid var(--linea-fuerte);
-  padding: 7px 14px;
-  font-size: 0.9rem;
   font-weight: 700;
   font-variation-settings: "wdth" 104;
   color: var(--tinta);
+  white-space: nowrap;
 }
-/* Son texto, asi que les aplica el 4.5 de AA: --linea-fuerte (3.30) no vale. */
-.flow .arrow { color: var(--grafito); font-weight: 700; }
+/* Son texto, asi que les aplica el 4.5 de AA: --linea-fuerte (3.30) no vale.
+   El marcado no deja espacio entre el paso y la flecha; se pone aqui. */
+.flow .arrow {
+  color: var(--grafito);
+  font-weight: 700;
+  margin: 0 var(--e2);
+}
 
 /* ---------- Grupos de módulos ---------- */
 
 .module-group { margin-top: var(--e7); }
 .module-group > h3 {
   font-size: 1.35rem;
-  font-variation-settings: "wdth" 108;
-  letter-spacing: -0.015em;
+  font-variation-settings: "wdth" 104;
   color: var(--tinta);
   border-top: 3px solid var(--teja);
   padding-top: var(--e3);
@@ -494,6 +502,154 @@ section.cifras { padding-top: 0; }
   font-size: 0.88rem;
 }
 
+.columna-legal { max-width: 72ch; }
+
+/* ---------- Huecos de captura pendiente ----------
+   Provisional. Marcan dónde va cada captura de LabopackWMS y a qué proporción,
+   para que la maquetación quede cerrada y meter la imagen sea sustituir el
+   <figure> por un <img>. No deben llegar a producción con texto dentro.
+   ------------------------------------------------------------------------- */
+
+.hueco {
+  margin: 0 0 var(--e5);
+  max-width: 760px;
+}
+.hueco .marco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--linea-fuerte);
+  color: var(--grafito);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: var(--e4);
+}
+.hueco.windows .marco { aspect-ratio: 16 / 10; }
+.hueco.android .marco { aspect-ratio: 9 / 16; max-width: 300px; margin: 0 auto; }
+.hueco figcaption {
+  margin-top: var(--e2);
+  color: var(--grafito);
+  font-size: 0.88rem;
+}
+
+/* ---------- Páginas de artículo (la guía de EDI) ---------- */
+
+.article-hero { padding-bottom: var(--e5); }
+.article-hero h1 {
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  max-width: 24ch;
+}
+
+.breadcrumb {
+  color: var(--grafito);
+  font-size: 0.95rem;
+  margin: 0 0 var(--e4);
+  max-width: none;
+}
+.breadcrumb a { color: var(--grafito); }
+.breadcrumb a:hover { color: var(--teja); }
+
+.article-body { max-width: var(--medida); }
+.article-body > h2 {
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  font-variation-settings: "wdth" 108;
+  letter-spacing: -0.02em;
+  border-top: 1px solid var(--linea-fuerte);
+  padding-top: var(--e3);
+  margin: var(--e6) 0 var(--e3);
+}
+.article-body > h2:first-child { margin-top: 0; }
+.article-body h3 { margin: var(--e5) 0 var(--e2); }
+.article-body p { color: var(--grafito); }
+.article-body ul, .article-body ol {
+  color: var(--grafito);
+  margin: 0 0 var(--e4);
+  padding-left: var(--e4);
+  max-width: var(--medida);
+}
+.article-body li { margin-bottom: var(--e2); }
+.article-body .spec-table { margin-bottom: var(--e4); }
+
+.article-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--e4);
+  flex-wrap: wrap;
+  margin: var(--e6) 0 var(--e5);
+}
+
+.note {
+  color: var(--grafito);
+  font-size: 0.88rem;
+  border-top: 1px solid var(--linea);
+  padding-top: var(--e3);
+  max-width: var(--medida);
+}
+
+/* ---------- Casos ---------- */
+
+/* A dos columnas: el titular y el descriptor anonimizado a la izquierda, el
+   relato a la derecha. Antes la regla roja cruzaba los 1180px sobre una
+   columna de texto de 66 caracteres, y la mitad derecha quedaba vacía. */
+.case {
+  border-top: 3px solid var(--teja);
+  padding-top: var(--e4);
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  /* La primera fila mide lo que el titular; si no, el cuerpo reparte su altura
+     entre las dos y el descriptor se descuelga hasta la mitad del caso. */
+  grid-template-rows: auto 1fr;
+  column-gap: var(--e6);
+  align-items: start;
+}
+.case :is(h2, h3) { grid-column: 1; grid-row: 1; }
+.case .anon { grid-column: 1; grid-row: 2; margin-bottom: 0; }
+.case .case-body { grid-column: 2; grid-row: 1 / span 2; }
+.case :is(h2, h3) {
+  font-size: 1.35rem;
+  font-variation-settings: "wdth" 104;
+  margin: 0 0 var(--e2);
+}
+.anon {
+  display: block;
+  color: var(--grafito);
+  font-size: 0.95rem;
+  margin-bottom: var(--e4);
+}
+/* .card p deja los parrafos a margen cero; en un caso son tres seguidos. */
+.case p {
+  font-size: 1rem;
+  margin-bottom: var(--e3);
+  max-width: var(--medida);
+}
+.case p:last-child { margin-bottom: 0; }
+.case-tag {
+  color: var(--grafito);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--linea);
+  padding-top: var(--e3);
+  margin-top: var(--e4);
+}
+
+/* ---------- Datos de contacto ---------- */
+
+.contact-block {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--e5);
+}
+.contact-item {
+  border-top: 1px solid var(--linea-fuerte);
+  padding-top: var(--e3);
+}
+.contact-item strong {
+  display: block;
+  margin-bottom: var(--e2);
+  font-variation-settings: "wdth" 104;
+}
+.contact-item a, .contact-item div { color: var(--grafito); }
+.contact-item a { color: var(--teja); }
+
 /* ---------- Movimiento ----------
    Un solo momento por sitio, y solo donde dice algo: los seis pasos del ciclo
    del almacén se descubren en orden al desplazarse, que es lo que describen.
@@ -557,6 +713,10 @@ section.cifras { padding-top: 0; }
   .container { padding: 0 var(--e4); }
 
   .partner { flex-direction: column; align-items: flex-start; gap: var(--e3); }
+  .contact-block { grid-template-columns: 1fr; gap: var(--e4); }
+  .case { grid-template-columns: 1fr; }
+  .case :is(h2, h3), .case .anon, .case .case-body { grid-column: 1; grid-row: auto; }
+  .case .anon { margin-bottom: var(--e4); }
 
   .hero { padding: var(--e7) 0 var(--e6); }
   .hero h1 { max-width: none; }
@@ -605,11 +765,11 @@ section.cifras { padding-top: 0; }
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    border-top: 1px solid var(--linea);
+    border-top: 1px solid var(--linea-fuerte);
     margin-bottom: var(--e3);
   }
   .nav-toggle:checked ~ .nav-links { display: flex; }
-  .nav-links li { border-bottom: 1px solid var(--linea); }
+  .nav-links li { border-bottom: 1px solid var(--linea-fuerte); }
   .nav-links a {
     display: block;
     padding: var(--e3) 0;
