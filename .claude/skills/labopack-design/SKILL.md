@@ -208,7 +208,10 @@ finales; la fase 5 lo hace.
     Si un elemento concreto lo necesita, se justifica en su regla.
 11. **Ningún marcador numerado 01 / 02 / 03** salvo que el contenido sea de verdad una
     secuencia (un proceso por pasos o una cronología).
-12. **Ninguna cadena de metadatos unida por puntos medios** (`A · B · C`) como adorno.
+12. **Ninguna cadena de metadatos unida por puntos medios** (`A · B · C`) añadida por el
+    diseño como adorno. Los puntos medios que ya están en el texto original se respetan:
+    el texto no se toca. Hoy quedan dos, ambos en `index.html`, separando dos enlaces y
+    el aviso legal del pie.
 13. **Ninguna tipografía monoespaciada** para rótulos pequeños o datos.
 14. **Ningún fondo crema** (`#F4F1EA` y vecinos) como base de página. El fondo es
     `--hormigon`.
