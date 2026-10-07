@@ -136,8 +136,10 @@ img { max-width: 100%; height: auto; }
 .nav-links a:not(.btn)[aria-current] { color: var(--tinta); border-bottom-color: var(--teja); }
 .nav-links a.btn { border-bottom: 0; }
 
-/* Menú de móvil sin JavaScript: una casilla oculta gobierna el desplegable. */
-.nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+/* Menú de móvil sin JavaScript: una casilla gobierna el desplegable.
+   En escritorio desaparece del todo para que nadie tabule a un control
+   invisible; en móvil vuelve, enfocable pero sin ocupar sitio. */
+.nav-toggle { display: none; }
 .nav-toggle-label { display: none; }
 
 /* ---------- Botones y enlaces de acción ---------- */
@@ -568,6 +570,13 @@ section.cifras { padding-top: 0; }
   .stat { padding: var(--e3) 0; }
 
   /* Menú desplegable gobernado por la casilla. */
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    width: 1px; height: 1px;
+    opacity: 0;
+    margin: 0;
+  }
   .nav-toggle-label {
     display: flex;
     flex-direction: column;
