@@ -1,0 +1,26 @@
+# Configuración de GitHub Pages.
+#
+# El sitio es HTML estático y no usa Jekyll para nada: no hay plantillas, ni
+# front matter, ni colecciones. Jekyll se limita a copiar los ficheros tal cual.
+# Este fichero existe por un motivo único: que la documentación interna del
+# repositorio no se publique en labopack.com.
+#
+# Sin él, Pages sirve desde la raíz de master y quedarían accesibles
+# labopack.com/docs/brief-rediseno.md y los 15 MB de capturas de docs/rediseno/,
+# con un robots.txt que dice «Allow: /». Los directorios que empiezan por punto
+# (.claude) ya los excluye Jekyll por su cuenta.
+#
+# La lista repite los valores que Jekyll excluye por defecto, porque declarar
+# «exclude» los sustituye en lugar de ampliarlos.
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - docs
+  - CLAUDE.md
+  - _config.yml
