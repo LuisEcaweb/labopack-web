@@ -7,6 +7,7 @@
   <meta name="description" content="LabopackWMS: software de gestión de almacenes (WMS/SGA) para operador 3PL que cubre todo el ciclo del almacén — recepción y EDI 940/856/945/947, inventario con lotes/caducidad/frío, fabricación y co-packing con plantillas BOM, picking con escáner Android offline, albaranes y etiquetas GS1 SSCC, expediciones y transporte con talón de porte. Origen en 2005, en producción desde 2024. Diseñado para farma, válido para todos los sectores.">
   <link rel="canonical" href="https://labopack.com/wms/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preload" href="/assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Labopack">
@@ -59,7 +60,7 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo.svg" alt="Labopack" width="169" height="34"></a>
+    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo-icono.svg" alt="" width="29" height="34" aria-hidden="true"><span class="brand-nombre">Labopack</span></a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -79,8 +80,7 @@
 
   <div class="hero">
     <div class="container">
-      <p class="kicker">LabopackWMS · Software de gestión de almacenes (WMS/SGA)</p>
-      <h1>Nacido en 2005.<br><span class="hl">Reinventado en 2024.</span></h1>
+      <h1>Nacido en 2005.<br>Reinventado en 2024.</h1>
       <p class="lead">
         LabopackWMS empezó en 2005 conectando Sage con un desarrollo a medida en nuestro
         almacén 3PL farmacéutico. Casi 20 años puliéndolo con pedidos reales y una reescritura
@@ -90,14 +90,14 @@
         inspecciones, gestiona tu almacén sea cual sea tu sector.
       </p>
       <div class="cta-row">
-        <a class="btn" href="/contacto/">Solicita una demo →</a>
+        <a class="btn" href="/contacto/">Solicita una demo</a>
         <a class="btn ghost" href="#funciones">Ver funciones</a>
         <a class="btn ghost" href="#comparativa">Comparativa</a>
       </div>
     </div>
   </div>
 
-  <section class="alt">
+  <section>
     <div class="container">
       <blockquote class="claim">
         “Durante años busqué un WMS que encajara con mi almacén: o eran carísimos, o no
@@ -128,17 +128,14 @@
         <p class="mg-sub">Recibe los pedidos de tus clientes en su formato y con sus datos maestros, sin picar nada a mano.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">📥</span>
             <h3>Importación EDI 940</h3>
             <p>Carga de pedidos EDI 940 desde CSV, en local o por SFTP, con vista previa, validación de estructura y control de errores antes de importar.</p>
           </div>
           <div class="card feature">
-            <span class="icon">🗂️</span>
             <h3>Maestros completos</h3>
             <p>Clientes, proveedores y transportistas con sus GLN y configuración EDI. Multi-depositante: opera para varios clientes en el mismo almacén 3PL.</p>
           </div>
           <div class="card feature">
-            <span class="icon">✅</span>
             <h3>Verificación de stock</h3>
             <p>Comprobación de disponibilidad por artículo y lote (FEFO) en el momento de importar, para saber qué pedidos se pueden servir antes de empezar.</p>
           </div>
@@ -151,17 +148,14 @@
         <p class="mg-sub">El corazón de un almacén farma: cada unidad con su lote, su caducidad y su temperatura, y cada movimiento auditado.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">🧊</span>
             <h3>Lotes, caducidades y frío</h3>
             <p>Trazabilidad completa por lote y fecha de caducidad, y marcado de producto que requiere cadena de frío. Lectura del <strong>DataMatrix GS1</strong> del medicamento (código, lote, caducidad y número de serie); verificación contra el nodo <strong>SEVeM bajo demanda</strong>. Lo que exige farma bajo GDP/BPD — y agradecen alimentación, cosmética o química.</p>
           </div>
           <div class="card feature">
-            <span class="icon">📊</span>
             <h3>Stock reservado y disponible</h3>
             <p>Stock actual, reservado y disponible por artículo y ubicación, con inventario físico contra sistema para detectar descuadres.</p>
           </div>
           <div class="card feature">
-            <span class="icon">⚠️</span>
             <h3>Ajustes con auditoría</h3>
             <p>Ajustes de inventario con motivo (recuento, rotura, devolución, corrección, merma…) y registro de quién y cuándo. Nada se mueve sin dejar rastro.</p>
           </div>
@@ -174,17 +168,14 @@
         <p class="mg-sub">Manipulados, kitting y montaje de lotes promocionales — el trabajo de valor añadido de un 3PL, gestionado como parte del WMS y no en una hoja de cálculo aparte.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">🏭</span>
             <h3>Órdenes de fabricación</h3>
             <p>Crea órdenes de fabricación (kits, manipulados, reacondicionados) con estados controlados —iniciar, completar, cancelar— y consumo automático de componentes.</p>
           </div>
           <div class="card feature">
-            <span class="icon">🧩</span>
             <h3>Plantillas BOM</h3>
             <p>Define la lista de materiales (Bill of Materials) una vez y reutilízala: el sistema calcula qué componentes consume cada orden y qué producto terminado genera.</p>
           </div>
           <div class="card feature">
-            <span class="icon">🔒</span>
             <h3>Stock coherente</h3>
             <p>Las transiciones de estado bloquean el registro para evitar descuadres cuando varios operarios trabajan a la vez sobre el mismo stock.</p>
           </div>
@@ -197,17 +188,14 @@
         <p class="mg-sub">El operario, con el móvil en la mano, escanea y confirma. Sin papeles y sin quedarse tirado cuando el WiFi no llega al fondo de la nave.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">📱</span>
             <h3>Escáner en Android</h3>
             <p>Preparación desde el móvil con escáner de códigos de barras por cámara. El operario ve sus pedidos asignados, escanea el artículo y confirma la cantidad.</p>
           </div>
           <div class="card feature">
-            <span class="icon">📡</span>
             <h3>Modo offline real</h3>
             <p>Arquitectura offline-first: la app sigue funcionando sin cobertura y sincroniza automáticamente al recuperar señal. Los almacenes de verdad tienen zonas muertas.</p>
           </div>
           <div class="card feature">
-            <span class="icon">📦</span>
             <h3>Albaranes guiados</h3>
             <p>Flujo de preparación de albaranes paso a paso —preparar, generar documentos, crear expedición— con incidencias registradas si algo no cuadra.</p>
           </div>
@@ -220,20 +208,17 @@
         <p class="mg-sub">La salida de mercancía con toda su documentación generada por el sistema: albarán, etiquetas GS1 y el EDI de vuelta al cliente.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">🏷️</span>
             <h3>Etiquetas GS1 con SSCC</h3>
             <p>Etiquetas de caja y palet en formato GS1 100×150 mm con código SSCC (Code128) y paletización — el estándar que piden los grandes distribuidores.</p>
           </div>
           <div class="card feature">
-            <span class="icon">📄</span>
             <h3>Albaranes valorados en PDF</h3>
             <p>Generación del albarán de cliente en PDF, con líneas, importes e IVA, listo para imprimir o enviar. Personalizable con el logo del depositante.</p>
           </div>
           <div class="card feature">
-            <span class="icon">🔄</span>
             <h3>EDI de salida validado</h3>
             <p>Exportación de EDI 856 (DESADV), 945 (Shipping Advice) y 947 (ajuste de inventario), validada contra la especificación del cliente antes de enviarla.</p>
-            <a class="more" href="/guias/edi-para-operadores-logisticos/">Guía: EDI 940/945/856/947 explicado →</a>
+            <a class="more" href="/guias/edi-para-operadores-logisticos/">Guía: EDI 940/945/856/947 explicado</a>
           </div>
         </div>
       </div>
@@ -244,17 +229,14 @@
         <p class="mg-sub">Agrupa albaranes en expediciones, asigna transportista y cierra el círculo con el talón de porte y la firma de recogida.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">🚚</span>
             <h3>Gestión de expediciones</h3>
             <p>Agrupa albaranes paletizados en una expedición, asigna transportista y sigue su estado: preparada, en ruta, entregada, retenida.</p>
           </div>
           <div class="card feature">
-            <span class="icon">🧾</span>
             <h3>Talón de porte</h3>
             <p>Generación del talón de porte en PDF con los datos de la expedición y el transportista, listo para entregar con la mercancía.</p>
           </div>
           <div class="card feature">
-            <span class="icon">✍️</span>
             <h3>Firma y seguimiento</h3>
             <p>Registro de la firma del transportista en la recogida y control de zona de tránsito, para saber en todo momento qué ha salido y qué falta.</p>
           </div>
@@ -266,17 +248,14 @@
         <p class="mg-sub">Un puesto de mando que resume el estado del almacén y avisa antes de que un problema se convierta en una incidencia.</p>
         <div class="grid cols-3">
           <div class="card feature">
-            <span class="icon">🗓️</span>
             <h3>Dashboard "Mi Día"</h3>
             <p>Vista de arranque con zonas semáforo (entrada, preparación, envío), actividad reciente y contadores de lo que queda por hacer.</p>
           </div>
           <div class="card feature">
-            <span class="icon">🔔</span>
             <h3>Alertas activas</h3>
             <p>Avisos automáticos de stock bajo y de producto próximo a caducar, para actuar antes de romper stock o tirar mercancía.</p>
           </div>
           <div class="card feature">
-            <span class="icon">👥</span>
             <h3>Roles y control</h3>
             <p>Operario, supervisor y administrador — cada uno ve lo que le corresponde, con autenticación segura y sincronización bidireccional entre oficina, servidor y móviles.</p>
           </div>
@@ -396,12 +375,12 @@
     </div>
   </section>
 
-  <section class="alt">
+  <section>
     <div class="container">
       <h2 class="section-title">¿Para quién es?</h2>
       <ul class="checklist">
-        <li><strong>Operadores logísticos 3PL</strong> que necesitan intercambiar EDI con sus clientes y gestionar operativas de varios depositantes. <a href="/wms/3pl/">Ver LabopackWMS para 3PL →</a></li>
-        <li><strong>Distribución farmacéutica</strong> — lotes, caducidades, frío y trazabilidad pensados para GDP/BPD e inspecciones sanitarias. <a href="/wms/farma/">Ver LabopackWMS para farma →</a></li>
+        <li><strong>Operadores logísticos 3PL</strong> que necesitan intercambiar EDI con sus clientes y gestionar operativas de varios depositantes. <a href="/wms/3pl/">Ver LabopackWMS para 3PL</a></li>
+        <li><strong>Distribución farmacéutica</strong> — lotes, caducidades, frío y trazabilidad pensados para GDP/BPD e inspecciones sanitarias. <a href="/wms/farma/">Ver LabopackWMS para farma</a></li>
         <li><strong>Alimentación, cosmética, química</strong> — cualquier sector donde el lote y la caducidad importan.</li>
         <li><strong>Cualquier almacén</strong> cuyo "sistema" actual sea un Excel y la memoria del encargado.</li>
       </ul>
@@ -413,22 +392,22 @@
       <div class="partner">
         <img class="p-logo" src="/assets/ecaweb-logo.png" alt="Ecaweb" width="64" height="64">
         <p class="p-body">
-          <span class="p-kicker">Partner tecnológico</span>
+          <span class="p-rotulo">Partner tecnológico</span>
           <strong>LabopackWMS cuenta con el respaldo de Ecaweb.</strong> Empresa de desarrollo y
           soporte informático con más de 20 años de trayectoria y más de 400 clientes. El mismo
           lenguaje sobre el que corre LabopackWMS —C#— es el que Ecaweb desarrolla y mantiene a
           diario: soporte y continuidad garantizados, no dependes de una sola persona.
-          <a href="https://www.ecaweb.es" rel="noopener">ecaweb.es →</a>
+          <a href="https://www.ecaweb.es" rel="noopener">ecaweb.es</a>
         </p>
       </div>
     </div>
   </section>
 
-  <section class="cta-final alt">
+  <section class="cta-final">
     <div class="container">
       <h2>Míralo funcionando</h2>
       <p>Sin presentaciones comerciales: te lo enseñamos moviendo pedidos de verdad, en el almacén donde opera cada día.</p>
-      <a class="btn" href="/contacto/">Solicita una demo →</a>
+      <a class="btn" href="/contacto/">Solicita una demo</a>
     </div>
   </section>
 

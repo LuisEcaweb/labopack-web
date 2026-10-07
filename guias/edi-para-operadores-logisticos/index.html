@@ -7,6 +7,7 @@
   <meta name="description" content="Guía práctica del EDI en logística 3PL: qué son los mensajes 940 (pedido), 945 (confirmación de expedición), 947 (ajuste de inventario), 856 (ASN) y DESADV, cómo encajan en el flujo del almacén y en qué se diferencian ANSI X12 y EDIFACT.">
   <link rel="canonical" href="https://labopack.com/guias/edi-para-operadores-logisticos/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preload" href="/assets/fonts/archivo-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Labopack">
@@ -48,7 +49,7 @@
 
 <header class="site-header">
   <div class="container nav">
-    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo.svg" alt="Labopack" width="169" height="34"></a>
+    <a class="brand" href="/"><img class="brand-logo" src="/assets/logo-icono.svg" alt="" width="29" height="34" aria-hidden="true"><span class="brand-nombre">Labopack</span></a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
     <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -68,7 +69,6 @@
   <div class="hero article-hero">
     <div class="container">
       <p class="breadcrumb"><a href="/">Inicio</a> › <a href="/wms/">LabopackWMS</a> › EDI para operadores logísticos</p>
-      <p class="kicker">Guía · Logística 3PL</p>
       <h1>EDI para operadores logísticos: 940, 945, 856, 947 y DESADV explicados</h1>
     </div>
   </div>
@@ -127,7 +127,7 @@
         <div class="article-cta">
           <h3>Cómo lo resuelve LabopackWMS</h3>
           <p>LabopackWMS importa el <strong>940</strong> (por CSV o SFTP) y genera <strong>945</strong>, <strong>856/DESADV</strong> y <strong>947</strong>, validando cada fichero contra la especificación real del cliente (incluida la guía COFARAN de farma) antes de enviarlo. Sin integraciones a medida carísimas y con el flujo 3PL completo de serie.</p>
-          <p><a class="btn" href="/wms/3pl/">Ver LabopackWMS para operadores 3PL →</a> &nbsp; <a class="btn ghost" href="/wms/">Alcance completo del WMS</a> &nbsp; <a class="btn ghost" href="/contacto/">Solicita una demo</a></p>
+          <p><a class="btn" href="/wms/3pl/">Ver LabopackWMS para operadores 3PL</a> &nbsp; <a class="btn ghost" href="/wms/">Alcance completo del WMS</a> &nbsp; <a class="btn ghost" href="/contacto/">Solicita una demo</a></p>
         </div>
 
         <p class="note">Los nombres y números de mensaje corresponden a los estándares públicos ANSI X12 y EDIFACT; esta guía simplifica el detalle técnico para claridad operativa. Las guías sectoriales (AECOC, COFARAN) definen el uso concreto de cada segmento.</p>

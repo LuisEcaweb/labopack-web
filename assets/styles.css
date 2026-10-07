@@ -296,7 +296,7 @@ section.cifras { padding-top: 0; }
 }
 .card p { color: var(--grafito); font-size: 0.96rem; margin: 0; }
 .card .more { margin-top: var(--e3); }
-.card.feature { border-top-color: var(--teja); border-top-width: 3px; }
+/* .card.feature no se distingue: en /wms/ lo son todas. El acento sube al grupo. */
 
 /* ---------- Listas de comprobación ---------- */
 
@@ -400,22 +400,140 @@ section.cifras { padding-top: 0; }
   font-size: 0.88rem;
 }
 
-/* ---------- Movimiento: un solo momento, y solo si el navegador lo admite ---------- */
+/* ---------- Flujo del almacén: una secuencia de verdad, con su dirección ---------- */
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .hero h1 {
-      animation: entrada both;
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--e2);
+  margin: 0 0 var(--e6);
+}
+.flow .step {
+  border: 1px solid var(--linea-fuerte);
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-variation-settings: "wdth" 104;
+  color: var(--tinta);
+}
+/* Son texto, asi que les aplica el 4.5 de AA: --linea-fuerte (3.30) no vale. */
+.flow .arrow { color: var(--grafito); font-weight: 700; }
+
+/* ---------- Grupos de módulos ---------- */
+
+.module-group { margin-top: var(--e7); }
+.module-group > h3 {
+  font-size: 1.35rem;
+  font-variation-settings: "wdth" 108;
+  letter-spacing: -0.015em;
+  color: var(--tinta);
+  border-top: 3px solid var(--teja);
+  padding-top: var(--e3);
+  margin: 0 0 var(--e2);
+}
+.module-group .mg-sub {
+  color: var(--grafito);
+  margin: 0 0 var(--e5);
+  max-width: var(--medida);
+}
+
+/* ---------- Tablas de especificaciones y comparativa ---------- */
+
+.table-wrap { overflow-x: auto; }
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.spec-table th,
+.spec-table td {
+  padding: var(--e3) var(--e3);
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--linea);
+}
+.spec-table th {
+  color: var(--tinta);
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-variation-settings: "wdth" 104;
+  border-bottom: 2px solid var(--tinta);
+}
+.spec-table td { color: var(--grafito); }
+.spec-table td:first-child { color: var(--tinta); font-weight: 600; }
+
+/* La columna propia se destaca con superficie, no con un segundo color. */
+.compare-table col.col-us { background: var(--papel); }
+.compare-table th.us { border-bottom-color: var(--teja); }
+.compare-table td.yes { color: var(--tinta); font-weight: 700; }
+.compare-table td.mid { color: var(--grafito); }
+.compare-note { color: var(--grafito); font-size: 0.85rem; margin: var(--e3) 0 0; }
+
+/* ---------- Partner tecnológico ---------- */
+
+.partner {
+  display: flex;
+  align-items: center;
+  gap: var(--e5);
+  border: 1px solid var(--linea-fuerte);
+  padding: var(--e4) var(--e5);
+  max-width: 780px;
+}
+.partner img.p-logo { width: 56px; height: 56px; flex-shrink: 0; }
+.partner .p-body { margin: 0; color: var(--grafito); max-width: none; }
+.partner .p-body strong { color: var(--tinta); }
+.partner .p-rotulo {
+  display: block;
+  margin-bottom: var(--e1);
+  color: var(--teja);
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+/* ---------- Movimiento ----------
+   Un solo momento por sitio, y solo donde dice algo: los seis pasos del ciclo
+   del almacén se descubren en orden al desplazarse, que es lo que describen.
+   En una línea de tiempo de scroll no existe animation-delay, así que el
+   escalonado se reparte con animation-range.
+   ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .more, .nav-links a, .card, .flow .step {
+    transition: color 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+  }
+
+  @supports (animation-timeline: view()) {
+    .flow .step {
+      animation: aparecer both;
       animation-timeline: view();
-      animation-range: entry 0% entry 1%;
+    }
+    .flow .step:nth-child(1)  { animation-range: entry 5%  entry 35%; }
+    .flow .step:nth-child(3)  { animation-range: entry 10% entry 40%; }
+    .flow .step:nth-child(5)  { animation-range: entry 15% entry 45%; }
+    .flow .step:nth-child(7)  { animation-range: entry 20% entry 50%; }
+    .flow .step:nth-child(9)  { animation-range: entry 25% entry 55%; }
+    .flow .step:nth-child(11) { animation-range: entry 30% entry 60%; }
+    .flow .arrow {
+      animation: atenuar both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 60%;
     }
   }
 }
 
-@keyframes entrada {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes aparecer {
+  from { opacity: 0; transform: translateX(-8px); }
   to   { opacity: 1; transform: none; }
 }
+@keyframes atenuar {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Sin soporte para líneas de tiempo de scroll, el contenido se ve completo
+   y estático: no hay estado inicial oculto que dependa de la animación. */
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -435,6 +553,8 @@ section.cifras { padding-top: 0; }
 
 @media (max-width: 820px) {
   .container { padding: 0 var(--e4); }
+
+  .partner { flex-direction: column; align-items: flex-start; gap: var(--e3); }
 
   .hero { padding: var(--e7) 0 var(--e6); }
   .hero h1 { max-width: none; }
