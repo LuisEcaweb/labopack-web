@@ -239,6 +239,23 @@ sin pasar por esto.**
 - Desplazamiento horizontal, si hiciera falta, con `scroll-snap`. Nunca secuestrando el
   scroll vertical.
 
+## Cómo se comprueba todo esto
+
+Los guiones están en [`docs/herramientas/`](../../../docs/herramientas/), con su README.
+No son dependencias del sitio y no se publican: `_config.yml` excluye `docs/`.
+
+| Guion | Comprueba |
+| --- | --- |
+| `verificar.py` | Que el `<head>` y el texto visible siguen intactos contra `master`, los 15 patrones prohibidos y el peso de cada página |
+| `contraste.mjs` | WCAG AA con los colores que calcula el navegador, en las 10 páginas a 390 y 1440 px, texto y bordes de control |
+| `capture.mjs` | Las capturas de `docs/rediseno/` |
+| `capturas.py` | El saneado de las capturas de producto |
+
+**Medir, no suponer.** En este proyecto la medición encontró cosas que ninguna captura
+delataba: el botón de la cabecera renderizando a **1.05** de contraste por una colisión
+de especificidad, `#D8451A` y `#F0704A` inservibles para texto, y el celeste a **1.96**
+sobre las secciones claras.
+
 ## Prohibiciones
 
 Cada una nombra un patrón exacto. Son comprobables con una búsqueda en el HTML y el CSS
