@@ -20,16 +20,19 @@
 }
 
 
+
 :root {
-  /* Turno de noche. El almacen a oscuras y el resplandor del escaner.
+  /* El azul marino y el celeste de la web original. No eran un rasgo de
+     plantilla: son el activo de color que ya funcionaba, y son lo coherente
+     con la interfaz de LabopackWMS, que es turquesa.
      Contrastes medidos en la skill: no cambiar sin volver a medir. */
-  --noche: #1C1613;        /* fondo de pagina: umbrio calido, no azulado */
-  --noche-2: #262019;      /* superficie elevada: cabecera, pie, destacados */
-  --crema: #E6DDD2;        /* texto principal, el crema del favicon */
-  --apagado: #A3958A;      /* texto secundario */
-  --linea: #3A2E26;        /* separadores decorativos */
-  --linea-fuerte: #7A6656; /* bordes que delimitan un control */
-  --brasa: #F0704A;        /* UNICO color de acento: la parada alta del logo */
+  --marino: #0A0F1C;       /* fondo de pagina */
+  --marino-2: #111A2B;     /* superficie elevada: cabecera, pie, destacados */
+  --texto: #E6EDF6;        /* texto principal */
+  --apagado: #93A7C4;      /* texto secundario */
+  --linea: #223049;        /* separadores decorativos */
+  --linea-fuerte: #52678F; /* bordes que delimitan un control */
+  --cian: #38BDF8;         /* UNICO color de acento */
 
   /* Espaciado: multiplos de 4 con saltos deliberados. */
   --e1: 4px;  --e2: 8px;   --e3: 14px;  --e4: 22px;
@@ -51,8 +54,8 @@ html {
 
 body {
   margin: 0;
-  background: var(--noche);
-  color: var(--crema);
+  background: var(--marino);
+  color: var(--texto);
   font-family: "Instrument Sans", system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.55;
@@ -74,13 +77,13 @@ h1, h2, h3, h4 {
 p { margin: 0 0 var(--e4); max-width: var(--medida); }
 p:last-child { margin-bottom: 0; }
 
-a { color: var(--brasa); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a { color: var(--cian); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 
 img { max-width: 100%; height: auto; }
 
 :focus-visible {
-  outline: 3px solid var(--brasa);
+  outline: 3px solid var(--cian);
   outline-offset: 2px;
 }
 
@@ -100,7 +103,7 @@ img { max-width: 100%; height: auto; }
 /* ---------- Cabecera ---------- */
 
 .site-header {
-  background: var(--noche-2);
+  background: var(--marino-2);
   border-bottom: 1px solid var(--linea-fuerte);
 }
 
@@ -117,7 +120,7 @@ img { max-width: 100%; height: auto; }
   gap: 11px;
   margin-right: auto;
   text-decoration: none;
-  color: var(--brasa);
+  color: var(--cian);
 }
 .brand-logo { display: block; height: 34px; width: auto; }
 .brand-nombre {
@@ -144,8 +147,8 @@ img { max-width: 100%; height: auto; }
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
 }
-.nav-links a:not(.btn):hover { color: var(--crema); border-bottom-color: var(--linea-fuerte); }
-.nav-links a:not(.btn)[aria-current] { color: var(--crema); border-bottom-color: var(--brasa); }
+.nav-links a:not(.btn):hover { color: var(--texto); border-bottom-color: var(--linea-fuerte); }
+.nav-links a:not(.btn)[aria-current] { color: var(--texto); border-bottom-color: var(--cian); }
 .nav-links a.btn { border-bottom: 0; }
 
 /* Menú de móvil sin JavaScript: una casilla gobierna el desplegable.
@@ -158,19 +161,19 @@ img { max-width: 100%; height: auto; }
 
 .btn {
   display: inline-block;
-  background: var(--brasa);
-  color: var(--noche);
+  background: var(--cian);
+  color: var(--marino);
   text-decoration: none;
   font-weight: 700;
   font-size: 0.92rem;
   padding: 11px 20px;
-  border: 2px solid var(--brasa);
+  border: 2px solid var(--cian);
 }
-.btn:hover { background: var(--crema); border-color: var(--crema); color: var(--noche); }
+.btn:hover { background: var(--texto); border-color: var(--texto); color: var(--marino); }
 
 .btn.ghost {
   background: transparent;
-  color: var(--crema);
+  color: var(--texto);
   border-color: var(--linea-fuerte);
 }
 /* Sobre la banda oscura el acento es --brasa, la parada alta del logo. --teja
@@ -178,20 +181,20 @@ img { max-width: 100%; height: auto; }
    acento de marca, en la version que esa superficie admite. */
 /* Las migas viven dentro de la banda oscura. */
 .hero .breadcrumb, .hero .breadcrumb a { color: var(--apagado); }
-.hero .breadcrumb a:hover { color: var(--brasa); }
-.btn.ghost:hover { background: transparent; border-color: var(--brasa); color: var(--brasa); }
+.hero .breadcrumb a:hover { color: var(--cian); }
+.btn.ghost:hover { background: transparent; border-color: var(--cian); color: var(--cian); }
 
 /* El enlace de acción se marca con subrayado, no con un carácter. */
 .more {
   display: inline-block;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--crema);
+  color: var(--texto);
   text-decoration: none;
-  border-bottom: 2px solid var(--brasa);
+  border-bottom: 2px solid var(--cian);
   padding-bottom: 1px;
 }
-.more:hover { color: var(--brasa); }
+.more:hover { color: var(--cian); }
 
 .cta-row.centrada { justify-content: center; }
 .cta-row {
@@ -260,7 +263,7 @@ img { max-width: 100%; height: auto; }
   gap: clamp(var(--e4), 4vw, var(--e6));
   align-items: baseline;
   padding: var(--e4) 0;
-  border-bottom: 1px solid rgba(230, 221, 210, 0.14);
+  border-bottom: 1px solid rgba(230, 237, 246, 0.14);
 }
 .stat .num {
   font-family: Fraunces, Georgia, serif;
@@ -268,7 +271,7 @@ img { max-width: 100%; height: auto; }
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
-  color: var(--crema);
+  color: var(--texto);
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
@@ -306,7 +309,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   flex-direction: column;
   gap: var(--e4);
   background: transparent;
-  border-top: 3px solid var(--brasa);
+  border-top: 3px solid var(--cian);
   padding-top: var(--e4);
 }
 .path-card h3 {
@@ -336,7 +339,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   align-items: start;
 }
 .vias .path-card:last-child {
-  background: var(--noche-2);
+  background: var(--marino-2);
   padding: var(--e5);
   border-top-width: 5px;
 }
@@ -344,12 +347,12 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
 /* ---------- Las tres razones: banda densa, no tres columnas de aire ---------- */
 
 .razones {
-  background: var(--noche-2);
+  background: var(--marino-2);
   border-top: 1px solid var(--linea-fuerte);
   border-bottom: 1px solid var(--linea-fuerte);
 }
 .razones .grid.cols-3 { gap: var(--e5); }
-.razones .card { border-top-color: var(--brasa); border-top-width: 3px; }
+.razones .card { border-top-color: var(--cian); border-top-width: 3px; }
 .razones .card h3 { font-size: 1.35rem; }
 
 /* ---------- La cita: el segundo momento, no una linea mas ---------- */
@@ -368,7 +371,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   width: fit-content;
   margin-top: var(--e5);
   padding-top: var(--e3);
-  border-top: 3px solid var(--brasa);
+  border-top: 3px solid var(--cian);
 }
 
 /* ---------- Tarjetas: sin caja, separadas por una regla ---------- */
@@ -403,16 +406,16 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   top: 0.62em;
   width: var(--e2);
   height: var(--e2);
-  background: var(--brasa);
+  background: var(--cian);
 }
-.checklist li strong { color: var(--crema); }
+.checklist li strong { color: var(--texto); }
 
 /* ---------- Cita ---------- */
 
 .claim {
   font-family: Fraunces, Georgia, serif;
   margin: 0;
-  border-left: 3px solid var(--brasa);
+  border-left: 3px solid var(--cian);
   padding-left: var(--e5);
   font-size: clamp(1.25rem, 2.4vw, 1.7rem);
   font-weight: 500;
@@ -451,7 +454,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
 /* ---------- Pie ---------- */
 
 .site-footer {
-  background: var(--noche-2);
+  background: var(--marino-2);
   border-top: 1px solid var(--linea-fuerte);
   padding: var(--e7) 0 var(--e5);
   font-size: 0.94rem;
@@ -470,7 +473,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--e2); }
 .site-footer li { color: var(--apagado); }
 .site-footer a { color: var(--apagado); text-decoration: none; }
-.site-footer a:hover { color: var(--brasa); text-decoration: underline; }
+.site-footer a:hover { color: var(--cian); text-decoration: underline; }
 
 .footer-partner-row { margin: 0 0 var(--e4); }
 .footer-partner a {
@@ -504,7 +507,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
 }
 .flow .step {
   font-weight: 700;
-  color: var(--crema);
+  color: var(--texto);
   white-space: nowrap;
 }
 /* Son texto, asi que les aplica el 4.5 de AA: --linea-fuerte (3.30) no vale.
@@ -520,8 +523,8 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
 .module-group { margin-top: var(--e7); }
 .module-group > h3 {
   font-size: 1.35rem;
-  color: var(--crema);
-  border-top: 3px solid var(--brasa);
+  color: var(--texto);
+  border-top: 3px solid var(--cian);
   padding-top: var(--e3);
   margin: 0 0 var(--e2);
 }
@@ -548,18 +551,18 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   border-bottom: 1px solid var(--linea);
 }
 .spec-table th {
-  color: var(--crema);
+  color: var(--texto);
   font-weight: 700;
   font-size: 0.92rem;
-  border-bottom: 2px solid var(--crema);
+  border-bottom: 2px solid var(--texto);
 }
 .spec-table td { color: var(--apagado); }
-.spec-table td:first-child { color: var(--crema); font-weight: 600; }
+.spec-table td:first-child { color: var(--texto); font-weight: 600; }
 
 /* La columna propia se destaca con superficie, no con un segundo color. */
-.compare-table col.col-us { background: var(--noche-2); }
-.compare-table th.us { border-bottom-color: var(--brasa); }
-.compare-table td.yes { color: var(--crema); font-weight: 700; }
+.compare-table col.col-us { background: var(--marino-2); }
+.compare-table th.us { border-bottom-color: var(--cian); }
+.compare-table td.yes { color: var(--texto); font-weight: 700; }
 .compare-table td.mid { color: var(--apagado); }
 .compare-note { color: var(--apagado); font-size: 0.85rem; margin: var(--e3) 0 0; }
 
@@ -575,11 +578,11 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
 }
 .partner img.p-logo { width: 56px; height: 56px; flex-shrink: 0; }
 .partner .p-body { margin: 0; color: var(--apagado); max-width: none; }
-.partner .p-body strong { color: var(--crema); }
+.partner .p-body strong { color: var(--texto); }
 .partner .p-rotulo {
   display: block;
   margin-bottom: var(--e1);
-  color: var(--brasa);
+  color: var(--cian);
   font-weight: 700;
   font-size: 0.88rem;
 }
@@ -624,7 +627,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   max-width: none;
 }
 .breadcrumb a { color: var(--apagado); }
-.breadcrumb a:hover { color: var(--brasa); }
+.breadcrumb a:hover { color: var(--cian); }
 
 .article-body { max-width: var(--medida); }
 .article-body > h2 {
@@ -668,7 +671,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
    relato a la derecha. Antes la regla roja cruzaba los 1180px sobre una
    columna de texto de 66 caracteres, y la mitad derecha quedaba vacía. */
 .case {
-  border-top: 3px solid var(--brasa);
+  border-top: 3px solid var(--cian);
   padding-top: var(--e4);
   display: grid;
   grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
@@ -722,7 +725,7 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   margin-bottom: var(--e2);
 }
 .contact-item a, .contact-item div { color: var(--apagado); }
-.contact-item a { color: var(--brasa); }
+.contact-item a { color: var(--cian); }
 
 /* ---------- Movimiento ----------
    Un solo momento por sitio, y solo donde dice algo: los seis pasos del ciclo
@@ -834,10 +837,10 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
   .nav-toggle-label span {
     display: block;
     height: 2px;
-    background: var(--crema);
+    background: var(--texto);
   }
   .nav-toggle:focus-visible + .nav-toggle-label {
-    outline: 3px solid var(--brasa);
+    outline: 3px solid var(--cian);
     outline-offset: 2px;
   }
 
@@ -860,6 +863,6 @@ section.cifras { padding-top: 0; padding-bottom: var(--e7); }
     font-size: 1rem;
     border-bottom: 0;
   }
-  .nav-links a[aria-current] { color: var(--brasa); }
+  .nav-links a[aria-current] { color: var(--cian); }
   .nav-links a.btn { margin: var(--e3) 0; text-align: center; }
 }

@@ -1,91 +1,90 @@
-# Diseño de Labopack · dirección «Turno de noche»
+# Diseño de Labopack · dirección «Marino»
 
 Esta skill es la fuente de verdad del diseño de labopack.com. Si algo de aquí choca
-con lo que ves en el repo, gana esta skill; si choca con `docs/brief-rediseno.md`,
-gana el brief y hay que actualizar esta skill.
+con lo que ves en el repo, gana esta skill.
 
 ## Dirección estética
 
-**Turno de noche.** El almacén a oscuras y el resplandor del escáner en el pasillo.
-Umbrío cálido, no azulado: se aleja a propósito del azul marino de la web anterior, que
-era un azul de pantalla y no de nave.
+**Marino.** Azul marino profundo con celeste, que es el mundo de color que la web ya
+tenía. Sobre él, tipografía con carácter y el producto como pieza central.
 
-La razón es el posicionamiento, que la web ya dice con todas las letras: *«Consultoría
-que no viene de un PowerPoint: viene de un almacén.»* Labopack opera su propio almacén
-desde 2004 y escribe su propio WMS desde 2005.
+### El brief se equivocaba en esto, y conviene que conste
 
-De ahí salen tres consecuencias que mandan sobre todo lo demás:
+`docs/brief-rediseno.md` lista «fondo azul marino con acento celeste» entre los rasgos a
+sustituir, y manda derivar la paleta del rojo teja del logo. **Eso era un error de
+diagnóstico.** El azul no era el problema:
+
+- Es el activo de color que ya funcionaba. Dos direcciones derivadas del logo —«Muelle»,
+  gris hormigón y rojo teja; «Turno de noche», umbrío cálido y brasa— se montaron
+  enteras y las dos salieron **más apagadas** que lo que sustituían.
+- **Es lo coherente con el producto.** La interfaz de LabopackWMS es turquesa: las
+  cabeceras de las cuatro capturas lo son. La web azul y la app turquesa hablaban el
+  mismo idioma. El que desentona es el logo rojo, no el sitio.
+
+Lo que sí delataba una plantilla eran los **detalles**, no el color: emojis como iconos,
+tarjetas con degradado que se elevan al pasar el ratón, la franja de cuatro cifras, el
+antetítulo en mayúsculas espaciadas, el desenfoque de la cabecera, Segoe UI y las flechas
+pegadas al texto de los enlaces. Eso es lo que se ha quitado.
+
+**Si alguien vuelve a proponer cambiar la paleta, que empiece por explicar de dónde
+saldría la energía visual que el azul ya aporta.**
+
+### Las tres consecuencias que mandan
 
 - **El producto es el peso visual.** Una interfaz clara a pantalla completa sobre el
-  fondo oscuro es lo que más pesa de la página, y es lo que se vende. La portada abre
-  con una captura de LabopackWMS, no con tipografía sobre un fondo.
-- **La brasa marca y dirige.** No decora, no hace degradados y no rellena fondos grandes.
+  marino es lo que más pesa de la página, y es lo que se vende. La portada abre con una
+  captura de LabopackWMS, no con tipografía sobre un fondo.
+- **El celeste marca y dirige.** No decora, no hace degradados, no rellena fondos grandes.
 - **La fuerza va en un solo sitio.** Lo que no es el titular o el producto, calla.
-
-### Historia de esta decisión
-
-El rediseño pasó primero por una dirección clara llamada «Muelle» (gris hormigón, rojo
-teja, Archivo). Se descartó después de verla montada: hacía bien el trabajo de quitar
-los rasgos de plantilla y ninguno el de dar presencia. **Quitar lo que sobra no es
-diseñar.** Si alguna vez se plantea volver a una dirección clara, el problema a resolver
-no es el gusto, es de dónde sale la energía visual.
 
 ## Paleta
 
 ```css
 :root{
-  --noche:#1C1613;        /* fondo de página: umbrío cálido, no azulado */
-  --noche-2:#262019;      /* superficie elevada: cabecera, pie, bloques destacados */
-  --crema:#E6DDD2;        /* texto principal: el crema del favicon */
-  --apagado:#A3958A;      /* texto secundario */
-  --linea:#3A2E26;        /* separadores decorativos */
-  --linea-fuerte:#7A6656; /* bordes que delimitan un control */
-  --brasa:#F0704A;        /* ÚNICO color de acento */
+  --marino:#0A0F1C;       /* fondo de página */
+  --marino-2:#111A2B;     /* superficie elevada: cabecera, pie, bloques destacados */
+  --texto:#E6EDF6;        /* texto principal */
+  --apagado:#93A7C4;      /* texto secundario */
+  --linea:#223049;        /* separadores decorativos */
+  --linea-fuerte:#52678F; /* bordes que delimitan un control */
+  --cian:#38BDF8;         /* ÚNICO color de acento */
 }
 ```
 
-**Un solo acento: `--brasa`**, que es la parada alta del degradado del logo. No hay color
-secundario, ni de éxito, ni de aviso. Si algo necesita destacar y la brasa ya está
-ocupada, se destaca con peso, tamaño o espacio.
+El icono de `assets/logo-icono.svg` usa **los colores originales del logo**, sin
+recolorear: fue dibujado exactamente para este fondo.
 
 ### Contraste comprobado
 
 | Par | Ratio | Uso |
 | --- | --- | --- |
-| `--crema` sobre `--noche` | 13.33 | Texto corriente |
-| `--crema` sobre `--noche-2` | 12.00 | Texto en superficie elevada |
-| `--apagado` sobre `--noche` | 6.16 | Texto secundario |
-| `--apagado` sobre `--noche-2` | 5.54 | Secundario en superficie |
-| `--brasa` sobre `--noche` | 6.07 | Enlaces, cifras, acento |
-| `--noche` sobre `--brasa` | 6.07 | Texto de botón sólido |
-| `--linea-fuerte` sobre `--noche` | 3.29 | Borde de control (mínimo 3.0) |
-| `--linea` sobre `--noche` | 1.36 | **Solo separadores decorativos** |
+| `--texto` sobre `--marino` | 16.22 | Texto corriente |
+| `--texto` sobre `--marino-2` | 14.76 | Texto en superficie elevada |
+| `--apagado` sobre `--marino` | 7.80 | Texto secundario |
+| `--apagado` sobre `--marino-2` | 7.10 | Secundario en superficie |
+| `--cian` sobre `--marino` | 8.93 | Enlaces, cifras, acento |
+| `--marino` sobre `--cian` | 8.93 | Texto de botón sólido |
+| `--linea-fuerte` sobre `--marino` | 3.37 | Borde de control (mínimo 3.0) |
+| `--linea` sobre `--marino` | 1.45 | **Solo separadores decorativos** |
 
-Dos reglas que salen de la medición y no son negociables:
-
-- **`#D8451A` y `#AA2300` no se usan.** Las paradas media y baja del logo dan 4.08 y
-  menos sobre `--noche`, por debajo de AA, y tampoco admiten texto encima. Se quedan en
-  el logo.
-- **`--linea` no puede delimitar un control.** A 1.36 solo vale para separar filas o
-  bloques cuando el espaciado ya transmite la separación. Campos, botones fantasma y
-  cualquier elemento interactivo usan `--linea-fuerte`.
+**`--linea` no puede delimitar un control.** A 1.45 solo vale para separar filas o
+bloques cuando el espaciado ya transmite la separación. Campos, botones fantasma y
+cualquier elemento interactivo usan `--linea-fuerte`.
 
 ## Tipografía
 
-**Dos familias, claramente distintas.**
+**Dos familias, claramente distintas.** Es lo que más distingue la web de su versión
+anterior, ahora que el color se conserva: Segoe UI era uno de los rasgos de plantilla.
 
 - **Fraunces** (serif variable, ejes SOFT, WONK y opsz) en titulares, cifras destacadas,
-  la cita y el rótulo «Labopack». Es la voz de la dirección.
-- **Instrument Sans** (variable, ejes de peso y anchura) en todo el texto corriente.
+  la cita y el rótulo «Labopack».
+- **Instrument Sans** (variable) en todo el texto corriente.
 
 | | |
 | --- | --- |
-| Ficheros | `assets/fonts/fraunces-variable.woff2` (118 KB) y `assets/fonts/instrumentsans-variable.woff2` (56 KB), solo subset `latin` |
-| Licencia | SIL Open Font License 1.1, en `assets/fonts/*-OFL.txt`. Permite alojarlas |
-| Carga | `font-display: swap` y un `<link rel="preload">` por familia. **Nunca desde Google Fonts ni ningún tercero** |
-
-El subset `latin-ext` **no** se incluye: todos los caracteres del español (á é í ó ú ñ ü
-¿ ¡) están en `latin`.
+| Ficheros | `assets/fonts/fraunces-variable.woff2` (118 KB) e `instrumentsans-variable.woff2` (56 KB), solo subset `latin` |
+| Licencia | SIL Open Font License 1.1, en `assets/fonts/*-OFL.txt` |
+| Carga | `font-display: swap` y un `<link rel="preload">` por familia. **Nunca desde un tercero** |
 
 ### Escala
 
@@ -97,11 +96,9 @@ El subset `latin-ext` **no** se incluye: todos los caracteres del español (á �
 | Entradilla | 1.16rem | Instrument Sans 400 |
 | Texto corriente | 1rem (base 17px) | Instrument Sans 400 |
 | Cifra destacada | `clamp(2rem, 4.4vw, 3.1rem)` | Fraunces 500 |
-| Rótulo secundario | 0.95rem | Instrument Sans 500 |
 
 - Las cifras llevan `font-variant-numeric: tabular-nums` siempre.
 - Medida máxima de línea: **66 caracteres** en texto corriente, **16ch** en `h1`.
-- `letter-spacing` negativo solo en titulares. En texto corriente, cero.
 
 ## Espaciado y retícula
 
@@ -185,8 +182,8 @@ sin pasar por esto.**
 ### Logo
 
 - El icono va en `assets/logo-icono.svg`, recoloreado para fondo claro: módulos en
-  `--noche` y `--crema`, con el módulo de acento en `--brasa`. Sin degradado.
-- El rótulo «Labopack» **se compone con Fraunces** (peso 600, color `--brasa`), no con
+  los colores originales del logo, sin recolorear. Sin degradado.
+- El rótulo «Labopack» **se compone con Fraunces** (peso 600, color `--cian`), no con
   una imagen. El `logo.svg` original, con su degradado y su texto en Arial, deja de
   usarse en la página.
 
@@ -235,8 +232,8 @@ finales; la fase 5 lo hace.
     comprobación válida es comparar contra `master`, no contar apariciones: si el total
     no sube, el diseño no ha añadido ninguno.
 13. **Ninguna tipografía monoespaciada** para rótulos pequeños o datos.
-14. **Ningún fondo claro como base de página.** El fondo es `--noche`; la única
-    superficie distinta es `--noche-2`, y solo para cabecera, pie y bloques destacados.
+14. **Ningún fondo claro como base de página.** El fondo es `--marino`; la única
+    superficie distinta es `--marino-2`, y solo para cabecera, pie y bloques destacados.
 15. **Ninguna familia tipográfica además de Fraunces e Instrument Sans.**
 16. **Ningún recurso de tercero.** Ni fuentes, ni scripts, ni píxeles, ni analítica.
 17. **Ninguna imagen generada con IA ni foto de stock.**
