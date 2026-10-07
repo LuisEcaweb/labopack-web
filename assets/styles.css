@@ -114,10 +114,19 @@ img { max-width: 100%; height: auto; }
 
 /* ---------- Cabecera ---------- */
 
+/* La cabecera acompana al bajar. /wms/ mide 11.162px: sin esto te quedas sin
+   navegacion durante doce pantallas. Opaca, no translucida: el desenfoque esta
+   prohibido (ver 7) y ademas aqui no hace falta. */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   background: var(--marino-2);
   border-bottom: 1px solid var(--linea-fuerte);
 }
+
+/* Con la cabecera fija, un salto a un ancla aterriza debajo de ella. */
+[id] { scroll-margin-top: 96px; }
 
 .site-header .nav {
   display: flex;

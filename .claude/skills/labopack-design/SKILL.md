@@ -87,6 +87,21 @@ recolorear: fue dibujado exactamente para este fondo.
 bloques cuando el espaciado ya transmite la separación. Campos, botones fantasma y
 cualquier elemento interactivo usan `--linea-fuerte`.
 
+## Cabecera
+
+**Fija y opaca.** Acompaña al bajar (`position: sticky`), porque `/wms/` mide 11.162 px
+—unas doce pantallas— y sin eso el visitante se queda sin navegación durante todo el
+recorrido. Los elementos con `id` llevan `scroll-margin-top: 96px` para que un salto a un
+ancla no aterrice debajo de ella.
+
+**No es translúcida.** El desenfoque está prohibido (ver 7) y aquí tampoco hace falta:
+sobre bloques que alternan claro y marino, una barra opaca es más legible que una
+translúcida.
+
+**Sin mega-menú.** La referencia lo usa para once líneas de producto con decenas de
+páginas cada una. Aquí hay 6 enlaces y 10 páginas: un panel desplegable sería
+arquitectura para un catálogo que no existe, y además necesitaría JavaScript.
+
 ## Tarjetas
 
 Las tarjetas son **superficie, no un bloque de texto con una regla encima**: fondo
