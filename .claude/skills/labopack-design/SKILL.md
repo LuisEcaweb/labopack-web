@@ -1,9 +1,4 @@
----
-name: labopack-design
-description: Identidad visual de labopack.com, dirección «Muelle». Léela antes de tocar assets/styles.css o el marcado de presentación de cualquier página. Fija paleta, tipografía, retícula, tratamiento de imagen y la lista de patrones prohibidos.
----
-
-# Diseño de Labopack · dirección «Muelle»
+# Diseño de Labopack · dirección «Turno de noche»
 
 Esta skill es la fuente de verdad del diseño de labopack.com. Si algo de aquí choca
 con lo que ves en el repo, gana esta skill; si choca con `docs/brief-rediseno.md`,
@@ -11,108 +6,102 @@ gana el brief y hay que actualizar esta skill.
 
 ## Dirección estética
 
-**Muelle.** El lenguaje visual es el del muelle de carga y la señalética de almacén:
-rótulos de estantería, marcas pintadas en el suelo, numeración de puertas, albaranes.
-No el del estudio de diseño ni el de la consultora.
+**Turno de noche.** El almacén a oscuras y el resplandor del escáner en el pasillo.
+Umbrío cálido, no azulado: se aleja a propósito del azul marino de la web anterior, que
+era un azul de pantalla y no de nave.
 
 La razón es el posicionamiento, que la web ya dice con todas las letras: *«Consultoría
 que no viene de un PowerPoint: viene de un almacén.»* Labopack opera su propio almacén
-desde 2004 y escribe su propio WMS desde 2005. La página tiene que parecer hecha por
-alguien que ha estado en el muelle, no por alguien que lo ha leído.
+desde 2004 y escribe su propio WMS desde 2005.
 
 De ahí salen tres consecuencias que mandan sobre todo lo demás:
 
-- **Funcional antes que expresivo.** Cada recurso visual codifica algo. Si un borde, un
-  número o una regla no dice nada que el contenido no dijera ya, se quita.
-- **El rojo es pintura de seguridad.** Marca y dirige; no decora, no hace degradados y
-  no rellena fondos grandes.
-- **La fuerza va en un solo sitio.** El titular. Todo lo que lo rodea calla.
+- **El producto es el peso visual.** Una interfaz clara a pantalla completa sobre el
+  fondo oscuro es lo que más pesa de la página, y es lo que se vende. La portada abre
+  con una captura de LabopackWMS, no con tipografía sobre un fondo.
+- **La brasa marca y dirige.** No decora, no hace degradados y no rellena fondos grandes.
+- **La fuerza va en un solo sitio.** Lo que no es el titular o el producto, calla.
+
+### Historia de esta decisión
+
+El rediseño pasó primero por una dirección clara llamada «Muelle» (gris hormigón, rojo
+teja, Archivo). Se descartó después de verla montada: hacía bien el trabajo de quitar
+los rasgos de plantilla y ninguno el de dar presencia. **Quitar lo que sobra no es
+diseñar.** Si alguna vez se plantea volver a una dirección clara, el problema a resolver
+no es el gusto, es de dónde sale la energía visual.
 
 ## Paleta
 
-Derivada del rojo teja del logo (`#AA2300`, `#D8451A`, `#F0704A`) y del crema del
-favicon. El fondo **no** es crema: es gris hormigón templado, para no caer en el
-patrón crema + terracota (ver Prohibiciones).
-
 ```css
 :root{
-  --hormigon:#E8E6E1;     /* fondo de página: suelo pulido */
-  --papel:#F5F4F1;        /* superficie elevada: cabecera, bloques destacados */
-  --tinta:#241C18;        /* texto principal: umbrío cálido, no un negro teñido */
-  --grafito:#5E534C;      /* texto secundario: entradillas, rótulos, nav en reposo */
-  --linea:#C6C2BA;        /* separadores decorativos */
-  --linea-fuerte:#847C70; /* bordes que delimitan un control */
-  --teja:#AA2300;         /* ÚNICO color de acento */
+  --noche:#1C1613;        /* fondo de página: umbrío cálido, no azulado */
+  --noche-2:#262019;      /* superficie elevada: cabecera, pie, bloques destacados */
+  --crema:#E6DDD2;        /* texto principal: el crema del favicon */
+  --apagado:#A3958A;      /* texto secundario */
+  --linea:#3A2E26;        /* separadores decorativos */
+  --linea-fuerte:#7A6656; /* bordes que delimitan un control */
+  --brasa:#F0704A;        /* ÚNICO color de acento */
 }
 ```
 
-**Un solo acento: `--teja`.** No hay color secundario, ni de éxito, ni de aviso. Si algo
-necesita destacar y el teja ya está ocupado, se destaca con peso, tamaño o espacio.
+**Un solo acento: `--brasa`**, que es la parada alta del degradado del logo. No hay color
+secundario, ni de éxito, ni de aviso. Si algo necesita destacar y la brasa ya está
+ocupada, se destaca con peso, tamaño o espacio.
 
 ### Contraste comprobado
 
-Ratios calculados sobre estos valores exactos. Si cambias un token, vuelve a medir.
-
 | Par | Ratio | Uso |
 | --- | --- | --- |
-| `--tinta` sobre `--hormigon` | 13.42 | Texto corriente |
-| `--tinta` sobre `--papel` | 15.22 | Texto sobre cabecera |
-| `--grafito` sobre `--hormigon` | 5.98 | Entradillas y rótulos |
-| `--grafito` sobre `--papel` | 6.78 | Nav en reposo |
-| `--teja` sobre `--hormigon` | 5.71 | Cifras, enlaces, subrayados |
-| `--teja` sobre `--papel` | 6.47 | Rótulo «Labopack» |
-| `--papel` sobre `--teja` | 6.47 | Texto de botón sólido |
-| `--linea-fuerte` sobre `--hormigon` | 3.30 | Borde de control (mínimo 3.0) |
-| `--linea` sobre `--hormigon` | 1.42 | **Solo separadores decorativos** |
+| `--crema` sobre `--noche` | 13.33 | Texto corriente |
+| `--crema` sobre `--noche-2` | 12.00 | Texto en superficie elevada |
+| `--apagado` sobre `--noche` | 6.16 | Texto secundario |
+| `--apagado` sobre `--noche-2` | 5.54 | Secundario en superficie |
+| `--brasa` sobre `--noche` | 6.07 | Enlaces, cifras, acento |
+| `--noche` sobre `--brasa` | 6.07 | Texto de botón sólido |
+| `--linea-fuerte` sobre `--noche` | 3.29 | Borde de control (mínimo 3.0) |
+| `--linea` sobre `--noche` | 1.36 | **Solo separadores decorativos** |
 
 Dos reglas que salen de la medición y no son negociables:
 
-- **`#D8451A` y `#F0704A` no llevan texto nunca**, ni encima ni debajo. Dan 3.99 y menos
-  contra `--papel`, por debajo de AA. Las paradas claras del logo se quedan en el logo.
-- **`--linea` no puede delimitar un control.** A 1.42 solo vale para separar filas o
-  bloques cuando el espaciado ya transmite la separación. Bordes de campos de formulario,
-  de botones fantasma y de cualquier elemento interactivo usan `--linea-fuerte`.
+- **`#D8451A` y `#AA2300` no se usan.** Las paradas media y baja del logo dan 4.08 y
+  menos sobre `--noche`, por debajo de AA, y tampoco admiten texto encima. Se quedan en
+  el logo.
+- **`--linea` no puede delimitar un control.** A 1.36 solo vale para separar filas o
+  bloques cuando el espaciado ya transmite la separación. Campos, botones fantasma y
+  cualquier elemento interactivo usan `--linea-fuerte`.
 
 ## Tipografía
 
-**Una sola familia: Archivo.** Variable, ejes de peso (400–800) y anchura (62–125 %).
-El contraste tipográfico sale de los ejes, no de un segundo archivo.
+**Dos familias, claramente distintas.**
 
-- Fichero: `assets/fonts/archivo-variable.woff2` (88 KB, solo subset `latin`).
-- Licencia: SIL Open Font License 1.1, en `assets/fonts/archivo-OFL.txt`. Permite
-  alojarla. **No se carga desde Google Fonts ni desde ningún tercero.**
-- `font-display: swap` obligatorio.
-- El subset `latin-ext` **no** se incluye: todos los caracteres del español
-  (á é í ó ú ñ ü ¿ ¡) están en `latin`. Añadirlo duplicaría el peso sin ganar nada.
-- Única adición admitida al `<head>`: un `<link rel="preload" as="font" type="font/woff2" crossorigin>`
-  apuntando a ese fichero.
+- **Fraunces** (serif variable, ejes SOFT, WONK y opsz) en titulares, cifras destacadas,
+  la cita y el rótulo «Labopack». Es la voz de la dirección.
+- **Instrument Sans** (variable, ejes de peso y anchura) en todo el texto corriente.
 
-```css
-@font-face{
-  font-family:Archivo;
-  src:url(/assets/fonts/archivo-variable.woff2) format('woff2');
-  font-weight:400 800;
-  font-stretch:62% 125%;
-  font-display:swap;
-}
-```
+| | |
+| --- | --- |
+| Ficheros | `assets/fonts/fraunces-variable.woff2` (118 KB) y `assets/fonts/instrumentsans-variable.woff2` (56 KB), solo subset `latin` |
+| Licencia | SIL Open Font License 1.1, en `assets/fonts/*-OFL.txt`. Permite alojarlas |
+| Carga | `font-display: swap` y un `<link rel="preload">` por familia. **Nunca desde Google Fonts ni ningún tercero** |
 
-### Escala y ajustes
+El subset `latin-ext` **no** se incluye: todos los caracteres del español (á é í ó ú ñ ü
+¿ ¡) están en `latin`.
 
-| Rol | Tamaño | Peso | Anchura | Interlínea |
-| --- | --- | --- | --- | --- |
-| Titular de página (`h1`) | `clamp(2.6rem,6.2vw,4.5rem)` | 800 | 114 % | 1.02 |
-| Titular de sección (`h2`) | `clamp(1.9rem,3.4vw,2.6rem)` | 800 | 110 % | 1.1 |
-| Subtítulo (`h3`) | 1.25rem | 700 | 104 % | 1.25 |
-| Entradilla | 1.16rem | 400 | 100 % | 1.62 |
-| Texto corriente | 1rem (base 17px) | 400 | 100 % | 1.55 |
-| Cifra destacada | `clamp(2rem,4.4vw,3.1rem)` | 800 | 108 % | 1 |
-| Rótulo secundario | 0.95rem | 500 | 100 % | 1.4 |
+### Escala
 
-- `letter-spacing` negativo solo en titulares: −0.025em en `h1`, −0.02em en `h2`.
-  En texto corriente, cero.
-- Las cifras llevan `font-variant-numeric: tabular-nums` siempre, para que alineen.
+| Rol | Tamaño | Familia |
+| --- | --- | --- |
+| Titular de página (`h1`) | `clamp(2.35rem, 7.4vw, 5.4rem)` | Fraunces 500 |
+| Titular de sección (`h2`) | `clamp(1.9rem, 3.4vw, 2.6rem)` | Fraunces 500 |
+| Subtítulo (`h3`) | 1.25–1.35rem | Fraunces 500 |
+| Entradilla | 1.16rem | Instrument Sans 400 |
+| Texto corriente | 1rem (base 17px) | Instrument Sans 400 |
+| Cifra destacada | `clamp(2rem, 4.4vw, 3.1rem)` | Fraunces 500 |
+| Rótulo secundario | 0.95rem | Instrument Sans 500 |
+
+- Las cifras llevan `font-variant-numeric: tabular-nums` siempre.
 - Medida máxima de línea: **66 caracteres** en texto corriente, **16ch** en `h1`.
+- `letter-spacing` negativo solo en titulares. En texto corriente, cero.
 
 ## Espaciado y retícula
 
@@ -196,10 +185,10 @@ sin pasar por esto.**
 ### Logo
 
 - El icono va en `assets/logo-icono.svg`, recoloreado para fondo claro: módulos en
-  `--tinta` y `--papel`, con el módulo de acento en `--teja`. Sin degradado.
-- El rótulo «Labopack» **se compone con Archivo** (peso 800, anchura 118 %, color
-  `--teja`), no con una imagen. El `logo.svg` original, con su degradado y su texto en
-  Arial, deja de usarse en la página.
+  `--noche` y `--crema`, con el módulo de acento en `--brasa`. Sin degradado.
+- El rótulo «Labopack» **se compone con Fraunces** (peso 600, color `--brasa`), no con
+  una imagen. El `logo.svg` original, con su degradado y su texto en Arial, deja de
+  usarse en la página.
 
 ## Movimiento
 
@@ -246,9 +235,9 @@ finales; la fase 5 lo hace.
     comprobación válida es comparar contra `master`, no contar apariciones: si el total
     no sube, el diseño no ha añadido ninguno.
 13. **Ninguna tipografía monoespaciada** para rótulos pequeños o datos.
-14. **Ningún fondo crema** (`#F4F1EA` y vecinos) como base de página. El fondo es
-    `--hormigon`.
-15. **Ninguna familia tipográfica además de Archivo.**
+14. **Ningún fondo claro como base de página.** El fondo es `--noche`; la única
+    superficie distinta es `--noche-2`, y solo para cabecera, pie y bloques destacados.
+15. **Ninguna familia tipográfica además de Fraunces e Instrument Sans.**
 16. **Ningún recurso de tercero.** Ni fuentes, ni scripts, ni píxeles, ni analítica.
 17. **Ninguna imagen generada con IA ni foto de stock.**
 
